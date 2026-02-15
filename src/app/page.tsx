@@ -1,4 +1,4 @@
-import { Navbar } from "../components/layout";
+import { Navbar, Footer } from "../components/layout";
 import { Hero, About, Projects, Experience, Contact } from "../components/sections";
 import { WhatsAppButton, InstallPrompt } from "../components/ui";
 
@@ -12,6 +12,7 @@ export default function Home() {
       <Projects />
       <Experience />
       <Contact />
+      <Footer />
       <WhatsAppButton />
       <InstallPrompt />
     </main>
