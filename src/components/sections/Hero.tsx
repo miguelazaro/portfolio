@@ -41,19 +41,20 @@ export function Hero() {
 
             <Title 
                 order={1} 
+                className="animated-text"
                 style={{ 
                     fontSize: 'clamp(2.5rem, 8vw, 4rem)', 
                     fontWeight: 900, 
                     textAlign: 'center', 
-                    lineHeight: 1.1 
+                    lineHeight: 1.1
                 }}
             >
-                Miguel<Text span c="cyan" inherit> Ángel Lazaro</Text>
+                Miguel Ángel Lazaro
             </Title>
 
             <Title 
                 order={2} 
-                c="dimmed" 
+                className="animated-text"
                 style={{ 
                     fontSize: 'clamp(1.2rem, 4.5vw, 2.5rem)', 
                     textAlign: 'center', 
@@ -87,7 +88,38 @@ export function Hero() {
                     href="/cv/cv_miguel_lazaro.pdf#toolbar=0"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ flex: '1 1 auto', minWidth: 'fit-content' }}
+                    style={{ 
+                        flex: '1 1 auto', 
+                        minWidth: 'fit-content',
+                        position: 'relative',
+                        transition: 'all 0.3s ease'
+                    }}
+                    styles={{
+                        root: {
+                            '&::before': {
+                                content: '""',
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                background: 'linear-gradient(135deg, #22b8cf, #15aabf)',
+                                borderRadius: '8px',
+                                opacity: 0,
+                                zIndex: -1,
+                                transition: 'all 0.3s ease',
+                                transform: 'scale(0.9)',
+                            },
+                            '&:hover::before': {
+                                opacity: 0.5,
+                                transform: 'scale(1.05) translateY(4px)',
+                                filter: 'blur(8px)',
+                            },
+                            '&:hover': {
+                                transform: 'translateY(-2px)',
+                            }
+                        }
+                    }}
                 >
                     {t('hero.cv')}
                 </Button>
@@ -99,7 +131,38 @@ export function Hero() {
                     component="a"
                     href="https://github.com/miguelazaro"
                     target="_blank"
-                    style={{ flex: '1 1 auto', minWidth: 'fit-content' }}
+                    style={{ 
+                        flex: '1 1 auto', 
+                        minWidth: 'fit-content',
+                        position: 'relative',
+                        transition: 'all 0.3s ease'
+                    }}
+                    styles={{
+                        root: {
+                            '&::before': {
+                                content: '""',
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                background: 'rgba(128, 128, 128, 0.3)',
+                                borderRadius: '8px',
+                                opacity: 0,
+                                zIndex: -1,
+                                transition: 'all 0.3s ease',
+                                transform: 'scale(0.9)',
+                            },
+                            '&:hover::before': {
+                                opacity: 1,
+                                transform: 'scale(1.05) translateY(4px)',
+                                filter: 'blur(8px)',
+                            },
+                            '&:hover': {
+                                transform: 'translateY(-2px)',
+                            }
+                        }
+                    }}
                 >
                     {t('hero.github')}
                 </Button>
@@ -111,7 +174,38 @@ export function Hero() {
                     component="a"
                     href="https://www.linkedin.com/in/miguel-lazaro-dev/"
                     target="_blank"
-                    style={{ flex: '1 1 auto', minWidth: 'fit-content' }}
+                    style={{ 
+                        flex: '1 1 auto', 
+                        minWidth: 'fit-content',
+                        position: 'relative',
+                        transition: 'all 0.3s ease'
+                    }}
+                    styles={{
+                        root: {
+                            '&::before': {
+                                content: '""',
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                background: 'rgba(0, 119, 181, 0.3)',
+                                borderRadius: '8px',
+                                opacity: 0,
+                                zIndex: -1,
+                                transition: 'all 0.3s ease',
+                                transform: 'scale(0.9)',
+                            },
+                            '&:hover::before': {
+                                opacity: 1,
+                                transform: 'scale(1.05) translateY(4px)',
+                                filter: 'blur(8px)',
+                            },
+                            '&:hover': {
+                                transform: 'translateY(-2px)',
+                            }
+                        }
+                    }}
                 >
                     {t('hero.linkedin')}
                 </Button>

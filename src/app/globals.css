@@ -24,3 +24,30 @@ html {
 [data-mantine-color-scheme="light"] [data-dimmed] {
   color: #64748b !important;
 }
+
+/* Animación de gradiente para texto del Hero */
+@keyframes gradient-text {
+  0%, 100% {
+    background: linear-gradient(135deg, #ff8c42 0%, white 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  33% {
+    background: linear-gradient(135deg, white 0%, white 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  66% {
+    background: linear-gradient(135deg, white 0%, #66b3ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.animated-text {
+  animation: gradient-text 8s ease infinite;
+  background-size: 200% 200%;
+}
