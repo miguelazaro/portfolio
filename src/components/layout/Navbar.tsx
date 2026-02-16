@@ -2,7 +2,7 @@
 
 import { Group, Button, Box, rem, Tooltip, Text, Divider, useMantineColorScheme } from '@mantine/core';
 import { IconUser, IconBriefcase, IconCode, IconMail } from '@tabler/icons-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ThemeToggle, LanguageToggle } from '../ui';
 import { useLanguage } from '@/context/LanguageContext';
 import Image from 'next/image';
@@ -12,24 +12,32 @@ export function Navbar() {
     const { colorScheme } = useMantineColorScheme();
     const [active, setActive] = useState('home');
     const [mounted, setMounted] = useState(false);
+    const isScrolling = useRef(false);
 
     useEffect(() => {
         setMounted(true);
     }, []);
 
     const scrollTo = (id: string) => {
+        isScrolling.current = true;
+        setActive(id);
+        
         const element = document.getElementById(id);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
-            setActive(id);
         } else if (id === 'home') {
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            setActive('home');
         }
+        setTimeout(() => {
+            isScrolling.current = false;
+        }, 1000);
     };
 
     useEffect(() => {
         const handleScroll = () => {
+            // Ignorar detección automática durante scroll programático
+            if (isScrolling.current) return;
+
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
                 setActive('contact');
                 return;
@@ -59,6 +67,10 @@ export function Navbar() {
         return {
             variant: isActive ? 'filled' : 'subtle',
             color: isActive ? 'cyan' : 'gray',
+            style: {
+                transition: 'background-color 150ms ease, color 150ms ease',
+                minWidth: 'fit-content',
+            }
         };
     };
 
@@ -92,11 +104,14 @@ export function Navbar() {
                         radius="xl"
                         px={8}
                         onClick={() => scrollTo('home')}
-                        {...getButtonProps('home')}
+                        variant={active === 'home' ? 'filled' : 'subtle'}
+                        color={active === 'home' ? 'cyan' : 'gray'}
                         style={{
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
+                            transition: 'background-color 150ms ease, color 150ms ease',
+                            minWidth: 'fit-content',
                         }}
                     >
                         <Image 
@@ -115,6 +130,9 @@ export function Navbar() {
                         />
                     </Button>
                 </Tooltip>
+
+                {/* SEPARADOR SUTIL */}
+                <Divider orientation="vertical" style={{ height: 24, margin: '0 1px', opacity: 0.5 }} />
 
                 {/* SOBRE MÍ */}
                 <Tooltip label={t('nav.about')} withArrow position="bottom" transitionProps={{ duration: 200 }}>
