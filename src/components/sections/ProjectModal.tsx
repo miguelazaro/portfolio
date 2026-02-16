@@ -1,6 +1,6 @@
 'use client';
 
-import { Modal, Image, Text, Badge, Group, Stack, Button, Divider, List, Title } from '@mantine/core';
+import { Modal, Image, Text, Badge, Group, Stack, Button, Divider, List } from '@mantine/core';
 import { IconBrandGithub, IconCalendar } from '@tabler/icons-react';
 import { Carousel } from '@mantine/carousel';
 import { useLanguage } from '@/context/LanguageContext';
@@ -32,9 +32,9 @@ export function ProjectModal({ opened, onClose, project }: ProjectModalProps) {
             padding="xl"
             radius="md"
             title={
-                <Title order={3} c="cyan">
+                <Text fw={700} size="lg" c="cyan">
                     {t(project.titleKey)}
-                </Title>
+                </Text>
             }
             overlayProps={{
                 backgroundOpacity: 0.55,
@@ -56,10 +56,10 @@ export function ProjectModal({ opened, onClose, project }: ProjectModalProps) {
                         },
                         indicator: {
                             backgroundColor: 'rgba(255, 255, 255, 0.4)',
-                            '&[data-active]': {
-                                backgroundColor: '#22b8cf',
-                            },
                         },
+                    }}
+                    classNames={{
+                        indicator: 'carousel-indicator',
                     }}
                 >
                     {project.images.map((image, index) => (

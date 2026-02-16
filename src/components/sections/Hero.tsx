@@ -45,8 +45,7 @@ export function Hero() {
                 style={{ 
                     fontSize: 'clamp(2.5rem, 8vw, 4rem)', 
                     fontWeight: 900, 
-                    textAlign: 'center', 
-                    lineHeight: 1.1
+                    textAlign: 'center'
                 }}
             >
                 Miguel Ángel Lazaro
@@ -54,11 +53,11 @@ export function Hero() {
 
             <Title 
                 order={2} 
-                className="animated-text"
+                className="animated-text subtitle"
                 style={{ 
                     fontSize: 'clamp(1.2rem, 4.5vw, 2.5rem)', 
                     textAlign: 'center', 
-                    marginTop: 10 
+                    marginTop: 10
                 }}
             >
                 {t('hero.title')}

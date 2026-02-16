@@ -9,7 +9,6 @@ export function InstallPrompt() {
     const [showPrompt, setShowPrompt] = useState(false);
 
     useEffect(() => {
-        // Verificar si ya fue instalada o rechazada anteriormente
         const wasPromptDismissed = localStorage.getItem('pwa-prompt-dismissed');
         const isInstalled = window.matchMedia('(display-mode: standalone)').matches;
 

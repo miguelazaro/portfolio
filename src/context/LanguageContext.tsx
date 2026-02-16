@@ -87,12 +87,9 @@ const translations = {
         'experience.work': 'Experiencia Laboral',
         'experience.education': 'Educación',
         'experience.certifications': 'Certificaciones',
-        'experience.freelance': 'Desarrollador Freelance',
-        'experience.freelanceDesc': 'Desarrollo de aplicaciones web para clientes, incluyendo sistemas SaaS, PWAs y landing pages corporativas.',
-        'experience.degree': 'Ingeniería de Software',
-        'experience.degreeDesc': 'Estudiante de ingeniería con enfoque en desarrollo web y arquitectura de software.',
-        'experience.cert1': 'Certificaciones Online',
-        'experience.cert1Desc': 'Cursos especializados en tecnologías modernas de desarrollo web.',
+        'experience.currentDegree': 'En curso',
+        'experience.testerDesc': 'Certificación profesional en pruebas de software y aseguramiento de calidad.',
+        'experience.awsDesc': 'Formación especializada en servicios y arquitectura de Amazon Web Services.',
         
         // Contact
         'contact.title': 'Hablemos',
@@ -201,12 +198,9 @@ const translations = {
         'experience.work': 'Work Experience',
         'experience.education': 'Education',
         'experience.certifications': 'Certifications',
-        'experience.freelance': 'Freelance Developer',
-        'experience.freelanceDesc': 'Development of web applications for clients, including SaaS systems, PWAs and corporate landing pages.',
-        'experience.degree': 'Software Engineering',
-        'experience.degreeDesc': 'Engineering student focused on web development and software architecture.',
-        'experience.cert1': 'Online Certifications',
-        'experience.cert1Desc': 'Specialized courses in modern web development technologies.',
+        'experience.currentDegree': 'In progress',
+        'experience.testerDesc': 'Professional certification in software testing and quality assurance.',
+        'experience.awsDesc': 'Specialized training in Amazon Web Services architecture and services.',
         
         // Contact
         'contact.title': 'Let\'s talk',
