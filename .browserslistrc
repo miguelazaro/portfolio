@@ -1,0 +1,14 @@
+# Navegadores modernos - elimina polyfills innecesarios
+# Reduce el tamaño del bundle y mejora performance
+
+> 0.5%
+last 2 versions
+not dead
+not IE 11
+not op_mini all
+
+# Soporte específico para navegadores modernos
+Chrome >= 90
+Firefox >= 90
+Safari >= 14
+Edge >= 90

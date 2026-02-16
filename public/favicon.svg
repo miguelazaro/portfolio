@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Background para que se vea en pestañas -->
+  <rect width="200" height="200" fill="#22b8cf" rx="40"/>
+  
+  <!-- M con diseño outline blanco -->
+  <path d="M 40 50 L 40 150 M 40 50 L 75 100 M 75 100 L 110 50 M 110 50 L 110 150" 
+        stroke="white" 
+        stroke-width="20" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        fill="none"/>
+  
+  <!-- L con diseño outline blanco -->
+  <path d="M 130 50 L 130 150 L 185 150" 
+        stroke="white" 
+        stroke-width="20" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        fill="none"/>
+</svg>

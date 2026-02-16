@@ -9,8 +9,10 @@ export const metadata: Metadata = {
   description: "Portafolio profesional de Miguel Ángel Lazaro, desarrollador Full Stack especializado en React, Next.js, TypeScript y Node.js",
   icons: {
     icon: [
-      { url: "/icon-192.svg", sizes: "192x192", type: "image/svg+xml" },
-      { url: "/icon-512.svg", sizes: "512x512", type: "image/svg+xml" },
+      { url: "/logo1.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/logo1.svg", type: "image/svg+xml" },
     ],
   },
   openGraph: {
@@ -20,6 +22,14 @@ export const metadata: Metadata = {
     title: "Miguel Ángel Lázaro | Full Stack Developer",
     description: "Portafolio profesional de desarrollo web Full Stack",
     siteName: "Miguel Ángel Lázaro Portfolio",
+    images: [
+      {
+        url: "/logo1.svg",
+        width: 200,
+        height: 200,
+        alt: "Miguel Lázaro Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",

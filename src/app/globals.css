@@ -93,3 +93,16 @@ html {
 .carousel-indicator[data-active] {
   background-color: #22b8cf !important;
 }
+
+/* Navbar container con estilos adaptativos */
+.navbar-container {
+  background-color: rgba(26, 27, 30, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+[data-mantine-color-scheme="light"] .navbar-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}

@@ -2,7 +2,7 @@
 
 Organización modular siguiendo mejores prácticas de Next.js.
 
-## 📁 Directorios
+## Directorios
 
 ### `/layout`
 Componentes de estructura y navegación.
@@ -22,7 +22,7 @@ Componentes reutilizables de interfaz.
 - `ThemeToggle.tsx` - Switch de tema oscuro/claro
 - `LanguageToggle.tsx` - Selector de idioma ES/EN
 
-## 📦 Barrel Exports
+## Barrel Exports
 Cada directorio incluye un `index.ts` para imports limpios:
 ```typescript
 import { Hero, About } from '@/components/sections';

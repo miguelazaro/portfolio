@@ -1,10 +1,11 @@
 'use client';
 
 import { Group, Button, Box, rem, Tooltip, Text, Divider, useMantineColorScheme } from '@mantine/core';
-import { IconHome, IconUser, IconBriefcase, IconCode, IconMail } from '@tabler/icons-react';
+import { IconUser, IconBriefcase, IconCode, IconMail } from '@tabler/icons-react';
 import { useState, useEffect } from 'react';
 import { ThemeToggle, LanguageToggle } from '../ui';
 import { useLanguage } from '@/context/LanguageContext';
+import Image from 'next/image';
 
 export function Navbar() {
     const { t } = useLanguage();
@@ -58,35 +59,25 @@ export function Navbar() {
         return {
             variant: isActive ? 'filled' : 'subtle',
             color: isActive ? 'cyan' : 'gray',
-            style: {
-                color: isActive 
-                    ? 'white' 
-                    : (mounted && colorScheme === 'light' ? '#495057' : '#C1C2C5'),
-                transition: 'all 0.3s ease'
-            }
         };
     };
 
+    if (!mounted) {
+        return null;
+    }
+
     return (
         <Box
+            className="navbar-container"
             style={{
                 position: 'fixed',
                 top: rem(12),
                 left: '50%',
                 transform: 'translateX(-50%)',
                 zIndex: 9999,
-                backgroundColor: mounted && colorScheme === 'light'
-                    ? 'rgba(255, 255, 255, 0.95)'
-                    : 'rgba(26, 27, 30, 0.95)',
                 backdropFilter: 'blur(12px)',
                 borderRadius: rem(50),
                 padding: '4px 6px',
-                border: mounted && colorScheme === 'light'
-                    ? '1px solid rgba(0, 0, 0, 0.08)'
-                    : '1px solid rgba(255, 255, 255, 0.1)',
-                boxShadow: mounted && colorScheme === 'light'
-                    ? '0 4px 20px rgba(0, 0, 0, 0.1)'
-                    : '0 4px 20px rgba(0, 0, 0, 0.5)',
                 width: 'max-content',
                 maxWidth: '95vw',
                 overflowX: 'auto'
@@ -94,16 +85,34 @@ export function Navbar() {
         >
             <Group gap={3} wrap="nowrap">
 
-                {/* INICIO */}
+                {/* LOGO / INICIO */}
                 <Tooltip label={t('nav.home')} withArrow position="bottom" transitionProps={{ duration: 200 }}>
                     <Button
                         size="xs"
                         radius="xl"
-                        px={6}
+                        px={8}
                         onClick={() => scrollTo('home')}
                         {...getButtonProps('home')}
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}
                     >
-                        <IconHome size={16} stroke={1.5} />
+                        <Image 
+                            src="/logo1.svg" 
+                            alt="ML Logo" 
+                            width={26} 
+                            height={26}
+                            style={{ 
+                                display: 'block',
+                                filter: active === 'home' 
+                                    ? 'brightness(0) invert(1)' 
+                                    : colorScheme === 'dark' 
+                                        ? 'brightness(0) invert(1)' 
+                                        : 'none'
+                            }}
+                        />
                     </Button>
                 </Tooltip>
 

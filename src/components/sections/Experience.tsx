@@ -133,3 +133,5 @@ export function Experience() {
         </Container>
     );
 }
+
+export default Experience;

@@ -101,3 +101,5 @@ export function InstallPrompt() {
         </Paper>
     );
 }
+
+export default InstallPrompt;
