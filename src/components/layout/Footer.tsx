@@ -1,11 +1,13 @@
 'use client';
 
 import { Container, Group, Text, ActionIcon, Box, useMantineColorScheme } from '@mantine/core';
-import { IconBrandGithub, IconBrandLinkedin, IconMail } from '@tabler/icons-react';
+import { IconBrandGithub, IconBrandLinkedin } from '@tabler/icons-react';
 import { useState, useEffect } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export function Footer() {
     const { colorScheme } = useMantineColorScheme();
+    const { t } = useLanguage();
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -28,17 +30,10 @@ export function Footer() {
             <Container size="lg">
                 <Group justify="space-between" align="center" wrap="wrap">
                     <Text size="sm" c="dimmed">
-                        © 2026 Miguel Ángel Lázaro. All rights reserved.
+                        {t('footer.rights')}
                     </Text>
                     
                     <Group gap="md">
-                        <Group gap="xs" style={{ fontSize: '0.875rem', color: 'dimmed' }}>
-                            <IconMail size={18} />
-                            <Text size="sm" c="dimmed">
-                                miguel.lazaro.2003@gmail.com
-                            </Text>
-                        </Group>
-                        
                         <ActionIcon
                             component="a"
                             href="https://github.com/miguelazaro"

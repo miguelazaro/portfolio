@@ -123,7 +123,9 @@ const translations = {
         'contact.questions.experience': '¿Podrías contarme más sobre tu experiencia en proyectos similares?',
         'contact.suggestionsTitle': 'Espacio para sugerencias (opcional)',
         'contact.suggestionsSubtitle': 'Si eres reclutador, déjame feedback constructivo para mejorar mi perfil o habilidades',
-        'contact.suggestionsPlaceholder': 'Ej: "Deberías aprender Docker", "Mejora el diseño de tu portafolio", "Agrega más proyectos de backend"...',
+        
+        // Footer
+        'footer.rights': '© 2026 Miguel Ángel Lázaro. Todos los derechos reservados.',
     },
     en: {
         // Navbar
@@ -235,7 +237,9 @@ const translations = {
         'contact.questions.experience': 'Could you tell me more about your experience on similar projects?',
         'contact.suggestionsTitle': 'Space for suggestions (optional)',
         'contact.suggestionsSubtitle': 'If you are a recruiter, leave me constructive feedback to improve my profile or skills',
-        'contact.suggestionsPlaceholder': 'Ex: "You should learn Docker", "Improve your portfolio design", "Add more backend projects"...',
+        
+        // Footer
+        'footer.rights': '© 2026 Miguel Ángel Lázaro. All rights reserved.',
     }
 };
 

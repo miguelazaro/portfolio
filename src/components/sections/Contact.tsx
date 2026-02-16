@@ -76,8 +76,11 @@ export function Contact() {
             <Title order={2} mb="sm" ta="center">
                 {t('contact.title')} <Text span c="cyan" inherit>{t('contact.titleHighlight')}</Text>
             </Title>
-            <Text c="dimmed" mb="xl" ta="center" maw={500} mx="auto">
+            <Text c="dimmed" mb="md" ta="center" maw={500} mx="auto">
                 {t('contact.description')}
+            </Text>
+            <Text c="dimmed" size="sm" ta="center" mb="xl">
+                miguel.lazaro.2003@gmail.com
             </Text>
 
             <Paper
@@ -171,7 +174,6 @@ export function Contact() {
                             </Text>
                         </div>
                         <Textarea
-                            placeholder={t('contact.suggestionsPlaceholder')}
                             variant="filled"
                             radius="md"
                             minRows={3}

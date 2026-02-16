@@ -2,8 +2,29 @@
 
 import { ActionIcon, Tooltip, rem } from '@mantine/core';
 import { IconBrandWhatsapp } from '@tabler/icons-react';
+import { useState, useEffect } from 'react';
 
 export function WhatsAppButton() {
+    const [isVisible, setIsVisible] = useState(true);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const footer = document.querySelector('footer');
+            if (footer) {
+                const footerRect = footer.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                // Ocultar cuando el footer es visible
+                setIsVisible(footerRect.top > windowHeight - 100);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    if (!isVisible) return null;
+
     return (
         <div
             style={{
