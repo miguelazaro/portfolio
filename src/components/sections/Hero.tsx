@@ -84,7 +84,7 @@ export function Hero() {
                     radius="md" 
                     leftSection={<IconFileCv size={18} />}
                     component="a"
-                    href="/cv/cv_miguel_lazaro.pdf#toolbar=0"
+                    href="/cv/Resume-cv.pdf#toolbar=0"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ 
