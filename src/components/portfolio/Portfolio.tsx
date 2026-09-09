@@ -8,10 +8,11 @@ import { portfolioCopy } from './copy';
 import { ContactForm } from './ContactForm';
 import { Journey } from './Journey';
 import { ProjectGallery } from './ProjectGallery';
+import { Technologies } from './Technologies';
 import styles from './portfolio.module.css';
 
 const glyph = 'M 30 370 V 40 H 105 L 190 193 L 275 40 H 350 V 370 H 268 V 199 L 190 327 L 112 199 V 370 Z';
-const sections = ['home', 'projects', 'about', 'experience', 'contact'];
+const sections = ['home', 'projects', 'about', 'technologies', 'experience', 'contact'];
 
 export function Portfolio() {
     const { language, setLanguage, t } = useLanguage();
@@ -33,7 +34,7 @@ export function Portfolio() {
     useEffect(() => {
         const update = () => {
             const current = sections.filter(id => (document.getElementById(id)?.getBoundingClientRect().top ?? Infinity) <= window.innerHeight * .45).at(-1);
-            setActive(current ?? 'home');
+            setActive(current === 'technologies' ? 'about' : current ?? 'home');
         };
         update();
         window.addEventListener('scroll', update, { passive: true });
@@ -124,6 +125,7 @@ export function Portfolio() {
                     </div>
                 </section>
                 <section id="about" className={`${styles.section} ${styles.about}`} aria-labelledby="about-title"><div><p className={styles.eyebrow}><span>03</span> {es ? 'DETRÁS DEL CÓDIGO' : 'BEHIND THE CODE'}</p><h2 id="about-title">{es ? 'Pensar el sistema.' : 'Think it through.'}<br /><span>{es ? 'Cuidar el detalle.' : 'Care for the details.'}</span></h2></div><div><p>{t('about.intro')}</p><p>{t('about.skills')}</p><p>{t('about.languages')}</p></div></section>
+                <Technologies onSelectProject={setSelected} />
                 <Journey />
                 <section id="contact" className={`${styles.section} ${styles.contact}`} aria-labelledby="contact-title">
                     <p className={styles.eyebrow}><span>05</span> {es ? 'SIGUIENTE CONVERSACIÓN' : 'NEXT CONVERSATION'}</p>

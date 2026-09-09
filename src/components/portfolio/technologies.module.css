@@ -1,0 +1,33 @@
+.section { padding-top: 65px; }
+.primary { display: flex; align-items: center; gap: 45px; padding: 24px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.primary h3 { font-size: 11px; font-weight: 500; letter-spacing: 1px; color: var(--muted); flex-shrink: 0; }
+.primary ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 20px 34px; }
+.primary li { display: flex; align-items: center; gap: 10px; font-family: var(--font-display), sans-serif; font-size: 18px; }
+.primary svg { color: var(--accent); flex-shrink: 0; }
+.groups { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px 32px; margin-top: 42px; }
+.group { display: grid; grid-template-rows: subgrid; grid-row: span 3; min-width: 0; }
+.group h3 { display: flex; gap: 11px; align-items: flex-start; font-size: 15px; font-weight: 500; line-height: 1.5; min-height: 46px; }
+.group h3 svg { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+.list { list-style: none; padding: 0; margin: 0 0 10px; display: flex; flex-wrap: wrap; align-content: flex-start; gap: 8px 0; }
+.list li { font-size: 13px; line-height: 1.7; }
+.list li:not(:last-child)::after { content: '/'; color: var(--muted); margin: 0 9px; }
+.example { display: flex; flex-direction: column; border-top: 1px solid var(--border); padding-top: 20px; }
+.example h4 { margin: 0 0 12px; color: var(--muted); font-size: 9px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+.example p { font-size: 12px; line-height: 1.85; color: var(--muted); }
+.example a { display: inline-flex; align-items: baseline; align-self: flex-start; gap: 8px; font-size: 11px; line-height: 1.7; margin-top: auto; padding: 23px 0 7px; border-bottom: 1px solid var(--border); }
+.example a svg { flex-shrink: 0; align-self: center; }
+.example a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+@media (max-width: 1100px) {
+    .groups { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 38px; }
+    .primary { align-items: flex-start; flex-direction: column; gap: 22px; }
+    .group h3 { min-height: 0; }
+}
+@media (max-width: 540px) {
+    .section { padding-top: 45px; }
+    .groups { grid-template-columns: 1fr; gap: 36px; margin-top: 32px; }
+    .group { display: flex; flex-direction: column; grid-row: auto; }
+    .primary ul { gap: 20px 25px; }
+    .primary li { font-size: 16px; }
+    .list { margin: 15px 0 20px; }
+    .example { padding-top: 16px; }
+}

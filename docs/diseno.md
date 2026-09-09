@@ -39,3 +39,9 @@ El servidor valida tipos, contenido obligatorio, email y longitudes. El correo s
 Para añadir más capturas, guardar los archivos en `public/img` y agregar sus rutas al arreglo `images` del proyecto en `src/data/projects.ts`. La primera es la portada. Con dos o más imágenes aparecen automáticamente el carrusel, el contador y los controles anterior/siguiente; no hay reproducción automática. En móvil se admiten deslizamientos horizontales y se mantiene el desplazamiento vertical. Al acercar la imagen, se puede desplazar el visor para explorar el detalle.
 
 Se comprobaron una y tres imágenes (estas últimas en una ruta temporal de prueba, eliminada), recorrido circular, flechas de teclado, enfoque del diálogo, cierre, zoom y adaptación a móvil. No se añadieron capturas de ejemplo a los proyectos reales.
+
+## Tecnologías
+
+`Technologies.tsx` presenta el stack principal y cuatro grupos estáticos: frontend, backend, bases de datos y servicios, y pruebas y herramientas. Utiliza iconos discretos y nombres visibles. Las tecnologías provienen del CV y de los proyectos documentados; no se asignan porcentajes de dominio.
+
+La sección se sitúa entre Sobre mí y Trayectoria. Al recorrerla se mantiene activo Perfil en móvil o Sobre mí en escritorio. Cada ejemplo enlaza a Proyectos y despliega el proyecto citado. Los grupos se muestran en cuatro columnas en escritorio, dos en tablet y una en móvil. Se comprobaron español e inglés, temas claro y oscuro, enlaces a proyectos y accesibilidad automática.

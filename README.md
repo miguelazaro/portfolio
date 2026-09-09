@@ -12,6 +12,7 @@ Portafolio personal como Desarrollador Fullstack Mid. Reúne proyectos, experien
 - Contenido en español e inglés.
 - Proyectos desplegables con descripción, participación, tecnologías y capturas.
 - Galerías con carrusel, ampliación, zoom, controles de teclado y deslizamiento horizontal en móvil.
+- Tecnologías agrupadas por área, con el stack principal destacado y ejemplos enlazados a proyectos.
 - Trayectoria con experiencia laboral, estudios y certificaciones del CV.
 - Formulario de contacto con validación, estados de envío y conservación del mensaje si ocurre un error.
 
@@ -62,6 +63,7 @@ src/
   components/portfolio/
     Portfolio.tsx                Composición y navegación
     Journey.tsx                  Experiencia, formación y certificaciones
+    Technologies.tsx             Stack y tecnologías aplicadas
     ProjectGallery.tsx           Carrusel y visor de capturas
     ContactForm.tsx              Formulario de contacto
     portfolio.module.css         Estilos de la página
