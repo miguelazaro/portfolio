@@ -1,16 +1,17 @@
 'use client';
 
 import { useEffect, useRef, useState, type PointerEvent } from 'react';
-import Image from 'next/image';
-import { IconArrowDown, IconArrowUpRight, IconArrowRight, IconHome, IconStack2, IconUser, IconMail, IconSun, IconMoon, IconBrandGithub, IconBrandLinkedin, IconPlus, IconMinus } from '@tabler/icons-react';
+import { IconArrowDown, IconArrowUpRight, IconArrowRight, IconHome, IconStack2, IconBriefcase, IconUser, IconMail, IconSun, IconMoon, IconBrandGithub, IconBrandLinkedin, IconPlus, IconMinus } from '@tabler/icons-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { projectsDataConfig } from '@/data/projects';
 import { portfolioCopy } from './copy';
 import { ContactForm } from './ContactForm';
+import { Journey } from './Journey';
+import { ProjectGallery } from './ProjectGallery';
 import styles from './portfolio.module.css';
 
 const glyph = 'M 30 370 V 40 H 105 L 190 193 L 275 40 H 350 V 370 H 268 V 199 L 190 327 L 112 199 V 370 Z';
-const sections = ['home', 'projects', 'about', 'contact'];
+const sections = ['home', 'projects', 'about', 'experience', 'contact'];
 
 export function Portfolio() {
     const { language, setLanguage, t } = useLanguage();
@@ -25,6 +26,7 @@ export function Portfolio() {
         { id: 'home', label: t('nav.home'), icon: IconHome },
         { id: 'projects', label: t('nav.projects'), icon: IconStack2 },
         { id: 'about', label: t('nav.about'), icon: IconUser },
+        { id: 'experience', label: es ? 'Trayectoria' : 'Journey', icon: IconBriefcase },
         { id: 'contact', label: t('nav.contact'), icon: IconMail },
     ];
 
@@ -53,7 +55,17 @@ export function Portfolio() {
                 <a href="#home" className={styles.brand} aria-label={es ? 'Miguel Lázaro — inicio' : 'Miguel Lázaro — home'}><span aria-hidden="true">m<span>.</span></span></a>
                 <span className={styles.railCaption}>FULL STACK<br />DEVELOPER</span>
                 <nav aria-label={t('nav.label')} className={styles.navigation}>
-                    {nav.map(item => <a key={item.id} href={`#${item.id}`} aria-current={active === item.id ? 'location' : undefined}><item.icon size={21} stroke={1.5} aria-hidden="true" /><span>{item.label}</span></a>)}
+                    <div className={styles.desktopNavigation}>
+                        {nav.map(item => <a key={item.id} href={`#${item.id}`} aria-current={active === item.id ? 'location' : undefined}><item.icon size={21} stroke={1.5} aria-hidden="true" /><span>{item.label}</span></a>)}
+                    </div>
+                    <div className={styles.mobileNavigation}>
+                        {nav.filter(item => item.id !== 'experience').map(item => (
+                            <a key={item.id} href={`#${item.id}`} aria-current={active === item.id || (item.id === 'about' && active === 'experience') ? 'location' : undefined}>
+                                <item.icon size={21} stroke={1.5} aria-hidden="true" />
+                                <span>{item.id === 'about' ? (es ? 'Perfil' : 'Profile') : item.label}</span>
+                            </a>
+                        ))}
+                    </div>
                 </nav>
                 <div className={styles.railSocials}>
                     <a href="https://github.com/miguelazaro" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><IconBrandGithub size={19} /></a>
@@ -105,15 +117,16 @@ export function Portfolio() {
                                 <h3><button className={styles.projectTrigger} onClick={() => setSelected(open ? null : project.id)} aria-expanded={open} aria-controls={`project-${project.id}`} id={`trigger-${project.id}`}><span className={styles.projectNumber}>0{index + 1}</span><span className={styles.projectName}>{t(project.titleKey)}</span><span className={styles.projectTech}>{project.technologies.slice(0, 2).join(' / ')}</span>{open ? <IconMinus size={23} /> : <IconPlus size={23} />}</button></h3>
                                 <div id={`project-${project.id}`} role="region" aria-labelledby={`trigger-${project.id}`} hidden={!open} className={styles.projectDetail}>
                                     <div><p className={styles.projectDescription}>{t(project.descExtendedKey)}</p>{project.roleKey && <p className={styles.role}>{t(project.roleKey)}</p>}<ul className={styles.contributions}>{(project.id === 'nodatix' ? copy.contributions : project.modulesKey.map(t)).map(item => <li key={item}><IconArrowRight size={15} aria-hidden="true" /><span>{item}</span></li>)}</ul><p className={styles.stack}>{project.technologies.join(' · ')}</p>{project.repoLink && <a className={styles.cv} href={project.repoLink} target="_blank" rel="noopener noreferrer">{es ? 'Ver código' : 'View code'}<IconArrowUpRight size={17} /></a>}</div>
-                                    {project.images[0] ? <div className={styles.projectCapture}><Image src={project.images[0]} alt={t(project.titleKey)} width={1200} height={800} sizes="(max-width: 900px) 90vw, 40vw" /></div> : <div className={styles.projectDiagram}><span className={styles.diagramLabel}>{es ? 'ESTRUCTURA DEL PROYECTO' : 'PROJECT STRUCTURE'}</span><strong>{project.id === 'nodatix' ? 'Nodatix' : 'Evenrent'}<span>↗</span></strong>{(project.id === 'nodatix' ? ['Next.js / Server Actions', 'Zod → ' + (es ? 'Servicios' : 'Services') + ' → Prisma', 'PostgreSQL / Supabase'] : ['Next.js / TypeScript', 'tRPC / Prisma', 'PostgreSQL']).map((line, i) => <div className={styles.diagramRow} key={line}><span>0{i + 1}</span>{line}</div>)}<p>{es ? 'Esquema técnico · captura pendiente' : 'Technical outline · screenshot pending'}</p></div>}
+                                    {project.images[0] ? <ProjectGallery images={project.images} title={t(project.titleKey)} /> : <div className={styles.projectDiagram}><span className={styles.diagramLabel}>{es ? 'ESTRUCTURA DEL PROYECTO' : 'PROJECT STRUCTURE'}</span><strong>{project.id === 'nodatix' ? 'Nodatix' : 'Evenrent'}<span>↗</span></strong>{(project.id === 'nodatix' ? ['Next.js / Server Actions', 'Zod → ' + (es ? 'Servicios' : 'Services') + ' → Prisma', 'PostgreSQL / Supabase'] : ['Next.js / TypeScript', 'tRPC / Prisma', 'PostgreSQL']).map((line, i) => <div className={styles.diagramRow} key={line}><span>0{i + 1}</span>{line}</div>)}<p>{es ? 'Esquema técnico · captura pendiente' : 'Technical outline · screenshot pending'}</p></div>}
                                 </div>
                             </article>;
                         })}
                     </div>
                 </section>
-                <section id="about" className={`${styles.section} ${styles.about}`} aria-labelledby="about-title"><div><p className={styles.eyebrow}><span>03</span> {es ? 'DETRÁS DEL CÓDIGO' : 'BEHIND THE CODE'}</p><h2 id="about-title">{es ? 'Pensar el sistema.' : 'Think it through.'}<br /><span>{es ? 'Cuidar el detalle.' : 'Care for the details.'}</span></h2></div><div><p>{t('about.intro')}</p><p>{t('about.skills')}</p><div className={styles.experience}><span>2026</span><div><strong>Nodatix</strong><p>{copy.role}</p><strong>MVPX AI</strong><p>{es ? 'Desarrollador Full Stack Jr · Estadía profesional' : 'Jr Full Stack Developer · Professional internship'}</p></div></div></div></section>
+                <section id="about" className={`${styles.section} ${styles.about}`} aria-labelledby="about-title"><div><p className={styles.eyebrow}><span>03</span> {es ? 'DETRÁS DEL CÓDIGO' : 'BEHIND THE CODE'}</p><h2 id="about-title">{es ? 'Pensar el sistema.' : 'Think it through.'}<br /><span>{es ? 'Cuidar el detalle.' : 'Care for the details.'}</span></h2></div><div><p>{t('about.intro')}</p><p>{t('about.skills')}</p><p>{t('about.languages')}</p></div></section>
+                <Journey />
                 <section id="contact" className={`${styles.section} ${styles.contact}`} aria-labelledby="contact-title">
-                    <p className={styles.eyebrow}><span>04</span> {es ? 'SIGUIENTE CONVERSACIÓN' : 'NEXT CONVERSATION'}</p>
+                    <p className={styles.eyebrow}><span>05</span> {es ? 'SIGUIENTE CONVERSACIÓN' : 'NEXT CONVERSATION'}</p>
                     <div className={styles.contactGrid}>
                         <div className={styles.contactIntro}>
                             <h2 id="contact-title">{es ? '¿Construimos' : 'Let’s build'}<br /><a href="mailto:miguel.lazaro.2003@gmail.com">{es ? 'algo juntos?' : 'something.'}<IconArrowUpRight aria-hidden="true" /></a></h2>

@@ -3,6 +3,7 @@ export interface Project {
     titleKey: string;
     descKey: string;
     descExtendedKey: string;
+    // First image is the cover; additional images appear in the project's gallery.
     images: string[];
     technologies: string[];
     modulesKey: string[];

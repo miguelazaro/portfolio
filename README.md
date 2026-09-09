@@ -1,205 +1,125 @@
-# Portfolio Full Stack - Miguel Ángel Lázaro
+# Portafolio de Miguel Ángel Lázaro
 
-Portafolio web profesional desarrollado con Next.js 16, React 19 y Mantine UI. Diseñado para demostrar habilidades técnicas en desarrollo full stack con enfoque en performance, accesibilidad y experiencia de usuario.
+Portafolio personal como Desarrollador Fullstack Mid. Reúne proyectos, experiencia profesional, formación y un formulario de contacto.
 
-**Live Demo:** [miguelazaro-portfolio.vercel.app](https://miguelazaro-portfolio.vercel.app)
+[Sitio publicado](https://miguelazaro-portfolio.vercel.app)
 
-## Lighthouse Performance Scores
+## Interfaz
 
-- **Performance:** 83/100
-- **Accessibility:** 84/100
-- **Best Practices:** 100/100
-- **SEO:** 100/100
+- Navegación lateral en escritorio: Inicio, Proyectos, Sobre mí, Trayectoria y Contacto.
+- Barra inferior en móvil con cuatro accesos. Perfil agrupa Sobre mí y Trayectoria.
+- Temas claro y oscuro, con tres combinaciones de acento: menta/coral, lila/lima y azul/naranja.
+- Contenido en español e inglés.
+- Proyectos desplegables con descripción, participación, tecnologías y capturas.
+- Galerías con carrusel, ampliación, zoom, controles de teclado y deslizamiento horizontal en móvil.
+- Trayectoria con experiencia laboral, estudios y certificaciones del CV.
+- Formulario de contacto con validación, estados de envío y conservación del mensaje si ocurre un error.
 
-## Stack Tecnológico
+La tipografía utiliza Space Grotesk y DM Sans, servidas desde archivos locales. Los estilos se implementan con CSS Modules y la inicial M está dibujada en SVG.
 
-### Frontend
-- **Next.js 16.1.4** - React Framework con App Router
-- **React 19.2.3** - Biblioteca de interfaces de usuario
-- **TypeScript** - Tipado estático
-- **Mantine UI 8.3.13** - Sistema de componentes modernos
-- **Framer Motion** - Animaciones fluidas
+## Tecnologías
 
-### Características
-- **PWA** - Progressive Web App instalable
-- **i18n** - Soporte multilenguaje (ES/EN)
-- **Dark Mode** - Tema oscuro/claro persistente
-- **Responsive Design** - Optimizado para todos los dispositivos
-- **Contact Form** - Integración con Resend para emails
+Next.js 16 con App Router, React 19 y TypeScript. El layout utiliza el proveedor de Mantine y los iconos son de Tabler. El envío de correo se realiza en el servidor con Resend.
 
-### Optimizaciones
-- **React Compiler** - Optimización automática de componentes
-- **Tree-shaking** - Bundle optimization para Mantine
-- **Modern JavaScript** - Sin polyfills innecesarios (Chrome 90+)
-- **CSS Optimization** - Minificación y optimización experimental
-- **Lazy Loading** - Carga diferida de recursos
+La galería usa un diálogo nativo de HTML. Al abrirlo, el foco queda dentro del visor; al cerrarlo, vuelve a la captura original. Las imágenes de los proyectos se sirven mediante `next/image`; el visor ampliado carga la captura original.
 
-## Arquitectura del Proyecto
+## Desarrollo local
 
-```
-portafolio_fullstack/
-├── src/
-│   ├── app/                    # Next.js App Router
-│   │   ├── api/
-│   │   │   └── contact/        # API Route para formulario
-│   │   ├── globals.css         # Estilos globales y animaciones
-│   │   ├── layout.tsx          # Root layout con providers
-│   │   └── page.tsx            # Página principal
-│   │
-│   ├── components/
-│   │   ├── layout/             # Componentes de estructura
-│   │   │   ├── Navbar.tsx      # Navegación con scroll-spy
-│   │   │   └── Footer.tsx      # Pie de página
-│   │   │
-│   │   ├── sections/           # Secciones principales
-│   │   │   ├── Hero.tsx        # Sección de bienvenida
-│   │   │   ├── About.tsx       # Información personal
-│   │   │   ├── Projects.tsx    # Showcase de proyectos
-│   │   │   ├── Experience.tsx  # Timeline de trayectoria
-│   │   │   └── Contact.tsx     # Formulario de contacto
-│   │   │
-│   │   └── ui/                 # Componentes reutilizables
-│   │       ├── WhatsAppButton.tsx
-│   │       ├── ThemeToggle.tsx
-│   │       ├── LanguageToggle.tsx
-│   │       └── InstallPrompt.tsx
-│   │
-│   └── context/
-│       └── LanguageContext.tsx # Estado global de i18n
-│
-├── public/                     # Assets estáticos
-│   ├── img/                    # Imágenes de proyectos
-│   ├── logo1.svg               # Logo principal
-│   └── icon-*.png              # Iconos PWA
-│
-├── .browserslistrc             # Targets de navegadores modernos
-├── next.config.ts              # Configuración de Next.js
-└── package.json
-```
+Requisitos: Node.js compatible con Next.js 16 y npm.
 
-## Instalación y Desarrollo
-
-### Prerequisitos
-- Node.js 20.x o superior
-- npm o pnpm
-
-### Configuración Local
-
-1. Clonar el repositorio
 ```bash
 git clone https://github.com/miguelazaro/portfolio.git
 cd portfolio
-```
-
-2. Instalar dependencias
-```bash
-npm install
-```
-
-3. Configurar variables de entorno
-
-Crear archivo `.env.local`:
-```env
-RESEND_API_KEY=your_resend_api_key
-EMAIL_FROM=noreply@yourdomain.com
-EMAIL_TO=your@email.com
-```
-
-4. Ejecutar en desarrollo
-```bash
+npm ci
 npm run dev
 ```
 
-Abrir [http://localhost:3000](http://localhost:3000)
+Abrir [localhost:3000](http://localhost:3000).
 
-### Scripts Disponibles
+Para habilitar el envío de mensajes, copiar `.env.local.example` a `.env.local` y completar la clave de Resend. El resto del portafolio puede ejecutarse sin esa clave.
+
+## Variables de entorno
+
+| Variable | Uso |
+| --- | --- |
+| `RESEND_API_KEY` | Clave de Resend, necesaria para enviar mensajes. Solo se utiliza en el servidor. |
+| `RESEND_FROM_EMAIL` | Remitente opcional. Si no se configura, se utiliza `Portafolio <onboarding@resend.dev>`. Un remitente propio debe estar verificado en Resend. |
+| `SITE_URL` | URL pública opcional para canonical, Open Graph y sitemap. Por defecto: `https://miguelazaro-portfolio.vercel.app`. |
+
+El destinatario está definido en `src/app/api/contact/route.ts`. El campo `replyTo` utiliza el correo de quien completa el formulario. El servidor valida tipos, campos obligatorios, formato de correo y longitudes; envía el contenido como texto.
+
+## Estructura
+
+```text
+src/
+  app/
+    page.tsx                     Página principal
+    layout.tsx                   Fuentes, proveedores y metadatos
+    api/contact/route.ts         Envío de correo con Resend
+    design-preview/page.tsx      Redirección a la página principal
+    robots.ts                    Reglas de rastreo
+    sitemap.ts                   Sitemap
+  components/portfolio/
+    Portfolio.tsx                Composición y navegación
+    Journey.tsx                  Experiencia, formación y certificaciones
+    ProjectGallery.tsx           Carrusel y visor de capturas
+    ContactForm.tsx              Formulario de contacto
+    portfolio.module.css         Estilos de la página
+    gallery.module.css           Estilos de la galería
+    copy.ts                      Textos complementarios
+  context/LanguageContext.tsx     Estado del idioma y traducciones
+  data/projects.ts               Datos y rutas de imágenes de proyectos
+  lib/site.ts                    Dominio público
+public/
+  img/                          Capturas de los proyectos
+  cv/                           Curriculum en PDF
+  fonts/                        Fuentes locales y licencias OFL
+  social-card.png               Portada para redes sociales
+tests/
+  contact-route.test.mjs         Pruebas del endpoint de contacto
+```
+
+## Actualizar contenido
+
+Los proyectos se configuran en `src/data/projects.ts`. Sus títulos y descripciones se resuelven mediante las claves de `LanguageContext.tsx`.
+
+Para agregar capturas, guardar los archivos en `public/img` e incluir sus rutas en el arreglo `images` del proyecto. La primera imagen será la portada. Cuando hay más de una, aparecen automáticamente las flechas y el contador; el carrusel no avanza por sí solo.
+
+La trayectoria se configura en `Journey.tsx`, con los textos de cargos y estudios en `LanguageContext.tsx`. El enlace al CV utiliza `public/cv/curriculum_vitae_lazaro.pdf`.
+
+La portada de redes está en `public/social-card.png`; su composición editable está en `docs/social-card.html`. Los metadatos se definen en `src/app/layout.tsx`.
+
+## Verificación
 
 ```bash
-npm run dev      # Servidor de desarrollo
-npm run build    # Build de producción
-npm start        # Servidor de producción
-npm run lint     # Linter de código
+npm run lint
+npm run build
+node --test tests/contact-route.test.mjs
 ```
+
+Las pruebas del endpoint simulan Resend y comprueban validación, destinatario, respuesta al remitente y errores del proveedor. No envían correos reales.
+
+Para revisar la compilación de producción localmente:
+
+```bash
+npm run build
+npm start
+```
+
+Las comprobaciones manuales incluyen navegación con teclado, foco del visor, cambios de idioma, temas y adaptación a pantallas pequeñas. El registro de la revisión previa al primer deploy está en [docs/preparacion-deploy.md](docs/preparacion-deploy.md), y las decisiones de interfaz en [docs/diseno.md](docs/diseno.md).
 
 ## Deploy
 
-### Vercel (Recomendado)
+El repositorio está conectado a Vercel. Un push a `main` activa el despliegue de producción.
 
-El proyecto está optimizado para Vercel:
+Configurar `RESEND_API_KEY` en las variables de Production de Vercel. Si se utiliza un remitente propio o cambia el dominio, configurar también `RESEND_FROM_EMAIL` o `SITE_URL` y volver a desplegar.
 
-1. Push a GitHub
-2. Importar proyecto en Vercel
-3. Configurar variables de entorno
-4. Deploy automático
-
-### Variables de Entorno en Producción
-```
-RESEND_API_KEY=xxxxx
-EMAIL_FROM=noreply@yourdomain.com
-EMAIL_TO=your@email.com
-```
-
-## Características Técnicas Destacadas
-
-### Performance Optimization
-- **Mantine Tree-shaking:** Importación selectiva de componentes
-- **Modern JS Targets:** Chrome 90+, Firefox 90+, Safari 14+
-- **CSS Optimization:** Experimental CSS minification
-- **Compression:** Brotli compression en producción
-
-### SEO y Accesibilidad
-- Metadata dinámica con Next.js
-- Semantic HTML
-- ARIA labels apropiados
-- Alt text en imágenes
-- Lighthouse score 84/100 en accesibilidad
-
-### PWA Features
-- Manifest.json configurado
-- Service Worker (Next.js automático)
-- Iconos para múltiples resoluciones
-- Prompt de instalación personalizado
-
-### Internacionalización
-- Context API para gestión de estado
-- Soporte ES/EN
-- Toggle persistente en localStorage
-- Traducciones tipadas con TypeScript
-
-## Patrones de Diseño Utilizados
-
-### Component Composition
-Separación clara entre componentes de layout, secciones y UI reutilizables.
-
-### Barrel Exports
-Exports centralizados para imports limpios:
-```typescript
-import { Hero, About, Projects } from '@/components/sections';
-```
-
-### Container/Presentational Pattern
-Separación de lógica de negocio y presentación en componentes.
-
-### Custom Hooks
-Reutilización de lógica con hooks personalizados (useLanguage).
-
-## Contribución
-
-Este es un proyecto de portafolio personal. Fork y modificaciones son bienvenidos para crear tu propio portafolio.
-
-## Licencia
-
-MIT License - Libre para uso personal y comercial.
+Después de publicar, comprobar la página principal, las capturas, el PDF del CV, `/social-card.png`, `/robots.txt` y `/sitemap.xml`. La recepción de un mensaje real se verifica por separado de las pruebas automatizadas.
 
 ## Contacto
 
-**Miguel Ángel Lázaro**  
-Desarrollador Full Stack Jr.
+Miguel Ángel Lázaro · Desarrollador Fullstack Mid
 
-- GitHub: [@miguelazaro](https://github.com/miguelazaro)
-- LinkedIn: [miguelazaro](https://linkedin.com/in/miguelazaro)
-- Portfolio: [miguelazaro-portfolio.vercel.app](https://miguelazaro-portfolio.vercel.app)
-
----
-
-Desarrollado con Next.js 16 y React 19 - 2026
+- [GitHub](https://github.com/miguelazaro)
+- [LinkedIn](https://www.linkedin.com/in/miguel-lazaro-dev/)
+- [Correo](mailto:miguel.lazaro.2003@gmail.com)
