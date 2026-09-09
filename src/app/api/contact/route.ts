@@ -1,72 +1,54 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const invalid = () => NextResponse.json({ error: 'Revisa los campos del formulario.' }, { status: 400 });
 
 export async function POST(request: Request) {
+    let body: unknown;
     try {
-        const { name, email, message, suggestions } = await request.json();
+        body = await request.json();
+    } catch {
+        return invalid();
+    }
+    if (!body || typeof body !== 'object' || Array.isArray(body)) return invalid();
+    const input = body as Record<string, unknown>;
+    const limits = { name: 120, email: 254, message: 5000 } as const;
+    for (const key of Object.keys(limits) as (keyof typeof limits)[]) {
+        if (typeof input[key] !== 'string' || !input[key].trim() || input[key].length > limits[key]) return invalid();
+    }
+    const name = (input.name as string).trim();
+    const email = (input.email as string).trim();
+    const message = (input.message as string).trim();
+    if (/\r|\n/.test(name) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return invalid();
+    // Preserve support for the optional field accepted by the previous form.
+    if (input.suggestions !== undefined && (typeof input.suggestions !== 'string' || input.suggestions.length > 5000)) return invalid();
+    const suggestions = typeof input.suggestions === 'string' ? input.suggestions.trim() : '';
 
-        // Validación 
-        if (!name || !email || !message) {
-            return NextResponse.json(
-                { error: 'Todos los campos son requeridos' },
-                { status: 400 }
-            );
-        }
-
-        // Validar email
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            return NextResponse.json(
-                { error: 'Email inválido' },
-                { status: 400 }
-            );
-        }
-
-        // Enviar email con Resend
+    if (!process.env.RESEND_API_KEY) {
+        return NextResponse.json({ error: 'El envío no está disponible. Intenta más tarde.' }, { status: 503 });
+    }
+    try {
+        const resend = new Resend(process.env.RESEND_API_KEY);
         const { data, error } = await resend.emails.send({
-            from: 'Portafolio <onboarding@resend.dev>', // Temporal
+            from: process.env.RESEND_FROM_EMAIL || 'Portafolio <onboarding@resend.dev>',
             to: ['miguel.lazaro.2003@gmail.com'],
+            replyTo: email,
             subject: `Nuevo mensaje de ${name} - Portafolio`,
-            html: `
-                <h2>Nuevo mensaje desde tu portafolio</h2>
-                <p><strong>Nombre:</strong> ${name}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Mensaje:</strong></p>
-                <p>${message}</p>
-                ${suggestions ? `
-                    <hr />
-                    <p><strong>💡 Sugerencias/Feedback:</strong></p>
-                    <p style="background-color: #f0f9ff; padding: 12px; border-left: 3px solid #22b8cf; border-radius: 4px;">
-                        ${suggestions}
-                    </p>
-                ` : ''}
-                <hr />
-                <p style="color: gray; font-size: 12px;">
-                    Este mensaje fue enviado desde tu portafolio web
-                </p>
-            `,
+            // Plain text preserves line breaks and keeps submitted markup inert.
+            text: [
+                'Nuevo mensaje desde tu portafolio',
+                `Nombre: ${name}`,
+                `Email: ${email}`,
+                '',
+                message,
+                ...(suggestions ? ['', 'Sugerencias / Feedback:', suggestions] : []),
+            ].join('\n'),
         });
-
-        if (error) {
-            console.error('Error de Resend:', error);
-            return NextResponse.json(
-                { error: 'Error al enviar el mensaje. Intenta de nuevo.' },
-                { status: 500 }
-            );
+        if (error || !data?.id) {
+            return NextResponse.json({ error: 'No se pudo enviar el mensaje. Intenta de nuevo.' }, { status: 502 });
         }
-
-        return NextResponse.json(
-            { success: true, messageId: data?.id },
-            { status: 200 }
-        );
-
-    } catch (error) {
-        console.error('Error enviando email:', error);
-        return NextResponse.json(
-            { error: 'Error al enviar el mensaje. Intenta de nuevo.' },
-            { status: 500 }
-        );
+        return NextResponse.json({ success: true, messageId: data.id });
+    } catch {
+        return NextResponse.json({ error: 'No se pudo enviar el mensaje. Intenta de nuevo.' }, { status: 502 });
     }
 }

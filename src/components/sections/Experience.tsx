@@ -1,137 +1,97 @@
 'use client';
 
-import { Container, Title, Text, Timeline as MantineTimeline, Badge, Group, Box } from '@mantine/core';
-import { IconBriefcase, IconSchool, IconCertificate } from '@tabler/icons-react';
-import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+import styles from '@/app/portfolio.module.css';
 
 export function Experience() {
     const { t } = useLanguage();
     
     const experiences = [
         {
-            type: 'education',
-            icon: IconSchool,
-            title: 'Ingeniería en Desarrollo y Gestión de Software',
-            company: 'Universidad Tecnológica de Tehuacán',
-            period: t('experience.currentDegree'),
-            description: 'San Pablo Tepetzingo, Puebla',
-            technologies: ['Desarrollo Full Stack', 'Gestión de Software', 'Arquitectura']
+            type: 'work',
+            title: t('experience.nodatix.title'),
+            company: 'Nodatix',
+            period: '04/2026 – 08/2026',
+            description: t('experience.nodatix.desc'),
+            technologies: ['Next.js', 'TypeScript', 'Prisma', 'Supabase', 'PostgreSQL', 'Vitest']
+        },
+        {
+            type: 'work',
+            title: t('experience.mvpx.title'),
+            company: 'MVPX AI',
+            period: '01/2026 – 04/2026',
+            description: t('experience.mvpx.desc'),
+            technologies: ['React', 'TypeScript', 'Node.js', 'Zustand', 'React Query', 'Node Native Test Runner']
         },
         {
             type: 'education',
-            icon: IconSchool,
-            title: 'TSU en Tecnologías de la Información Área DSM',
+            title: t('experience.degree.title'),
             company: 'Universidad Tecnológica de Tehuacán',
-            period: '2022 - 2024',
-            description: 'San Pablo Tepetzingo',
-            technologies: ['Desarrollo de Software', 'Bases de Datos', 'Programación']
+            period: '08/2024 – 04/2026',
+            description: t('experience.location'),
+            technologies: []
+        },
+        {
+            type: 'education',
+            title: t('experience.tsu.title'),
+            company: 'Universidad Tecnológica de Tehuacán',
+            period: '08/2022 – 07/2024',
+            description: t('experience.location'),
+            technologies: []
         },
         {
             type: 'certification',
-            icon: IconCertificate,
-            title: 'Certificado en Tester',
+            title: t('experience.tester.title'),
             company: 'Capacítate para el Empleo, Fundación Carlos Slim',
             period: '2023',
             description: t('experience.testerDesc'),
-            technologies: ['Testing', 'QA', 'Control de Calidad']
+            technologies: ['Testing', 'QA']
         },
         {
             type: 'certification',
-            icon: IconCertificate,
-            title: 'Constancia de Gamer a Experto AWS',
+            title: t('experience.excel.title'),
+            company: 'Testing Program',
+            period: '2023',
+            description: t('experience.excelDesc'),
+            technologies: ['Excel']
+        },
+        {
+            type: 'certification',
+            title: t('experience.aws.title'),
             company: 'NECTEC',
             period: '2023',
             description: t('experience.awsDesc'),
-            technologies: ['AWS', 'Cloud Computing', 'Servicios en la Nube']
+            technologies: ['AWS']
         }
     ];
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.3
-            }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { x: -50, opacity: 0 },
-        visible: {
-            x: 0,
-            opacity: 1,
-            transition: { duration: 0.5 }
-        }
-    };
-
+    const groups = [
+        { type: 'work', label: 'experience.work' },
+        { type: 'education', label: 'experience.education' },
+        { type: 'certification', label: 'experience.certifications' },
+    ];
     return (
-        <Container 
-            size="lg" 
-            py="xl" 
-            mt={60} 
-            id="experience"
-            style={{ scrollMarginTop: '100px' }}
-        >
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-            >
-                <Title order={2} ta="center" mb={50}>
-                    {t('experience.title')} <Text span c="cyan" inherit>{t('experience.titleHighlight')}</Text>
-                </Title>
-
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                >
-                    <Box maw={900} mx="auto" pl={{ base: 0, sm: 40, md: 80, lg: 120 }} pr={{ base: 0, sm: 'md' }}>
-                        <MantineTimeline active={experiences.length} bulletSize={40} lineWidth={2} color="cyan">
-                            {experiences.map((exp, index) => (
-                                <MantineTimeline.Item
-                                    key={index}
-                                    bullet={<exp.icon size={20} />}
-                                    title={
-                                        <motion.div variants={itemVariants}>
-                                            <Group gap="xs" mb="xs">
-                                                <Text fw={700} size="lg">{exp.title}</Text>
-                                            </Group>
-                                            <Text size="sm" c="dimmed" mb={5}>
-                                                {exp.company} • {exp.period}
-                                            </Text>
-                                        </motion.div>
-                                    }
-                                >
-                                    <motion.div variants={itemVariants}>
-                                        <Text c="dimmed" size="sm" mb="md" style={{ lineHeight: 1.7 }}>
-                                            {exp.description}
-                                        </Text>
-                                        <Group gap="xs">
-                                            {exp.technologies.map((tech) => (
-                                                <Badge 
-                                                    key={tech} 
-                                                    variant="light" 
-                                                    color="cyan" 
-                                                    size="sm"
-                                                >
-                                                    {tech}
-                                                </Badge>
-                                            ))}
-                                        </Group>
-                                    </motion.div>
-                                </MantineTimeline.Item>
-                            ))}
-                        </MantineTimeline>
-                    </Box>
-                </motion.div>
-            </motion.div>
-        </Container>
+        <section className={styles.section} id="experience" aria-labelledby="experience-heading">
+            <div className={styles.sectionHead}><h2 id="experience-heading" className={styles.sectionTitle}>{t('experience.title')} {t('experience.titleHighlight')}</h2><span className={styles.sectionIndex}>03 / {t('experience.sectionLabel')}</span></div>
+            {groups.map(group => (
+                <div key={group.type}>
+                    <h3 className={styles.subheading}>{t(group.label)}</h3>
+                    <ol className={styles.timeline}>
+                        {experiences.filter(exp => exp.type === group.type).map(exp => (
+                            <li key={exp.title}>
+                                <span className={styles.timelineDate}>{exp.period}</span>
+                                <div>
+                                    <h3>{exp.title}</h3>
+                                    <h4>{exp.company}</h4>
+                                    <p>{exp.description}</p>
+                                    {exp.technologies.length > 0 && <p style={{ fontSize: 11, marginTop: 12 }}>{exp.technologies.join(' · ')}</p>}
+                                </div>
+                            </li>
+                        ))}
+                    </ol>
+                </div>
+            ))}
+        </section>
     );
 }
-
 export default Experience;

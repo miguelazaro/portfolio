@@ -4,8 +4,13 @@ import { useState, useEffect } from 'react';
 import { Button, Paper, Text, Group, ActionIcon } from '@mantine/core';
 import { IconDownload, IconX } from '@tabler/icons-react';
 
+interface InstallPromptEvent extends Event {
+    prompt: () => Promise<void>;
+    userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>;
+}
+
 export function InstallPrompt() {
-    const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+    const [deferredPrompt, setDeferredPrompt] = useState<InstallPromptEvent | null>(null);
     const [showPrompt, setShowPrompt] = useState(false);
 
     useEffect(() => {
@@ -17,9 +22,9 @@ export function InstallPrompt() {
         }
 
         // Listener para el evento beforeinstallprompt
-        const handler = (e: any) => {
+        const handler = (e: Event) => {
             e.preventDefault();
-            setDeferredPrompt(e);
+            setDeferredPrompt(e as InstallPromptEvent);
             setShowPrompt(true);
         };
 
@@ -91,7 +96,7 @@ export function InstallPrompt() {
             <Button
                 fullWidth
                 variant="filled"
-                color="cyan"
+                color="orange"
                 leftSection={<IconDownload size={18} />}
                 onClick={handleInstall}
                 size="sm"

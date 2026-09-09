@@ -1,151 +1,34 @@
 'use client';
 
-import { Modal, Image, Text, Badge, Group, Stack, Button, Divider, List } from '@mantine/core';
-import { IconBrandGithub, IconCalendar } from '@tabler/icons-react';
-import { Carousel } from '@mantine/carousel';
+import { Modal } from '@mantine/core';
+import Image from 'next/image';
+import { IconArrowUpRight } from '@tabler/icons-react';
 import { useLanguage } from '@/context/LanguageContext';
+import type { Project } from '@/data/projects';
+import styles from '@/app/portfolio.module.css';
 
-interface ProjectModalProps {
-    opened: boolean;
-    onClose: () => void;
-    project: {
-        titleKey: string;
-        descKey: string;
-        descExtendedKey: string;
-        images: string[];
-        technologies: string[];
-        modulesKey: string[];
-        repoLink: string;
-        date?: string;
-    };
-}
+interface ProjectModalProps { opened: boolean; onClose: () => void; project: Project; }
 
 export function ProjectModal({ opened, onClose, project }: ProjectModalProps) {
     const { t } = useLanguage();
-
+    const hasRepository = !!project.repoLink && /^https?:\/\//.test(project.repoLink);
     return (
-        <Modal
-            opened={opened}
-            onClose={onClose}
-            size="xl"
-            centered
-            padding="xl"
-            radius="md"
-            title={
-                <Text fw={700} size="lg" c="cyan">
-                    {t(project.titleKey)}
-                </Text>
-            }
-            overlayProps={{
-                backgroundOpacity: 0.55,
-                blur: 3,
-            }}
-        >
-            <Stack gap="lg">
-                {/* Carousel de imágenes */}
-                <Carousel
-                    withIndicators
-                    withControls={project.images.length > 1}
-                    styles={{
-                        control: {
-                            backgroundColor: 'rgba(34, 184, 207, 0.8)',
-                            border: 'none',
-                            '&:hover': {
-                                backgroundColor: 'rgba(34, 184, 207, 1)',
-                            },
-                        },
-                        indicator: {
-                            backgroundColor: 'rgba(255, 255, 255, 0.4)',
-                        },
-                    }}
-                    classNames={{
-                        indicator: 'carousel-indicator',
-                    }}
-                >
-                    {project.images.map((image, index) => (
-                        <Carousel.Slide key={index}>
-                            <Image
-                                src={image}
-                                height={300}
-                                fit="contain"
-                                alt={`${t(project.titleKey)} - Screenshot ${index + 1}`}
-                                style={{
-                                    backgroundColor: 'rgba(0, 0, 0, 0.05)',
-                                    borderRadius: '8px',
-                                }}
-                            />
-                        </Carousel.Slide>
-                    ))}
-                </Carousel>
-
-                {/* Fecha */}
-                {project.date && (
-                    <Group gap="xs">
-                        <IconCalendar size={18} style={{ color: '#22b8cf' }} />
-                        <Text size="sm" c="dimmed">
-                            {project.date}
-                        </Text>
-                    </Group>
-                )}
-
-                {/* Descripción extendida */}
-                <div>
-                    <Text fw={600} mb="xs">{t('projects.modal.about')}</Text>
-                    <Text size="sm" c="dimmed">
-                        {t(project.descExtendedKey)}
-                    </Text>
+        <Modal opened={opened} onClose={onClose} size={760} centered padding={0} title={t(project.titleKey)} closeButtonProps={{ 'aria-label': t('projects.close') }}
+            classNames={{ content: styles.modalContent, header: styles.modalHeader, title: styles.modalTitle, body: styles.modalBody }} overlayProps={{ backgroundOpacity: .55 }} transitionProps={{ duration: 0 }}>
+            <div className={styles.modalMeta}>
+                {project.statusKey && <span>{t(project.statusKey)}</span>}
+                {project.date && <span>{project.date}</span>}
+            </div>
+            {project.images.map((src, index) => (
+                <div className={styles.modalMedia} key={src}>
+                    <Image src={src} fill sizes="(max-width: 760px) 90vw, 700px" className={styles.projectImage} alt={t(project.titleKey) + ' — ' + (index + 1)} />
                 </div>
-
-                <Divider />
-
-                {/* Módulos / Características */}
-                <div>
-                    <Text fw={600} mb="xs">{t('projects.modal.modules')}</Text>
-                    <List
-                        spacing="xs"
-                        size="sm"
-                        center
-                        icon={
-                            <span style={{ color: '#22b8cf', fontSize: '1.2rem' }}>•</span>
-                        }
-                    >
-                        {project.modulesKey.map((moduleKey, index) => (
-                            <List.Item key={index}>
-                                {t(moduleKey)}
-                            </List.Item>
-                        ))}
-                    </List>
-                </div>
-
-                <Divider />
-
-                {/* Tecnologías */}
-                <div>
-                    <Text fw={600} mb="xs">{t('projects.modal.technologies')}</Text>
-                    <Group gap="xs">
-                        {project.technologies.map((tech) => (
-                            <Badge key={tech} variant="light" color="cyan" size="lg">
-                                {tech}
-                            </Badge>
-                        ))}
-                    </Group>
-                </div>
-
-                {/* Botón de repositorio */}
-                <Button
-                    component="a"
-                    href={project.repoLink}
-                    target="_blank"
-                    variant="filled"
-                    color="cyan"
-                    size="md"
-                    leftSection={<IconBrandGithub size={20} />}
-                    fullWidth
-                    mt="md"
-                >
-                    {t('projects.viewCode')}
-                </Button>
-            </Stack>
+            ))}
+            <div className={styles.prose}><p>{t(project.descExtendedKey)}</p></div>
+            {project.roleKey && <section className={styles.modalSection}><h3>{t('projects.modal.role')}</h3><p>{t(project.roleKey)}</p></section>}
+            <section className={styles.modalSection}><h3>{t('projects.modal.modules')}</h3><ul>{project.modulesKey.map(key => <li key={key}>{t(key)}</li>)}</ul></section>
+            <section className={styles.modalSection}><h3>{t('projects.modal.technologies')}</h3><ul className={styles.modalTech}>{project.technologies.map(tech => <li key={tech}>{tech}</li>)}</ul></section>
+            {hasRepository && <div className={styles.actions}><a className={styles.button} href={project.repoLink} target="_blank" rel="noopener noreferrer">{t('projects.viewCode')} <IconArrowUpRight size={16} /></a></div>}
         </Modal>
     );
 }

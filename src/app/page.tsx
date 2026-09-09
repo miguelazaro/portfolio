@@ -1,20 +1,5 @@
-import { Navbar, Footer } from "../components/layout";
-import { Hero, About, Projects, Experience, Contact } from "../components/sections";
-import { WhatsAppButton, InstallPrompt } from "../components/ui";
-
+import { Portfolio } from '@/components/portfolio/Portfolio';
 
 export default function Home() {
-  return (
-    <main>
-      <Navbar />
-      <Hero />
-      <About />
-      <Projects />
-      <Experience />
-      <Contact />
-      <Footer />
-      <WhatsAppButton />
-      <InstallPrompt />
-    </main>
-  );
+    return <Portfolio />;
 }
