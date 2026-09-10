@@ -22,6 +22,17 @@
 .canvas img { object-fit: contain; padding: 16px; }
 .viewerFooter { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid var(--border); min-height: 64px; padding: 10px 24px; }
 .viewerFooter p { font-size: 11px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) {
+    .dialog[open] { animation: viewer-enter 200ms cubic-bezier(.22, 1, .36, 1); }
+    .dialog[open]::backdrop { animation: backdrop-enter 200ms ease-out; }
+    .enlarge, .arrows button, .viewerActions button { transition: transform 150ms ease-out, border-color 150ms ease-out, color 150ms ease-out; }
+    .arrows button:active, .viewerActions button:active { transform: scale(.94); }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .capture:hover .enlarge { transform: translateY(-3px); }
+}
+@keyframes viewer-enter { from { opacity: 0; transform: translateY(8px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes backdrop-enter { from { opacity: 0; } to { opacity: 1; } }
 @media (max-width: 540px) {
     .dialog { width: 100vw; height: 100dvh; border: 0; }
     .viewerHeader { padding: max(14px, env(safe-area-inset-top)) 14px 14px; gap: 12px; }

@@ -1,5 +1,17 @@
 # Diseño principal del portafolio
 
+## Movimiento e interacción
+
+Las referencias de [Craft](https://rauno.me/craft), [Invisible Details of Interaction Design](https://rauno.me/craft/interaction-design) y [Designing Depth](https://rauno.me/craft/depth) orientan las entradas escalonadas, la continuidad de la navegación y la respuesta a las acciones. La implementación es propia y utiliza CSS y Web Animations, sin dependencias nuevas.
+
+Los títulos entran una vez al aparecer en pantalla, con 12 px de desplazamiento y un desenfoque breve de 2 px. El indicador de navegación se desplaza en 260 ms; los proyectos abren y cierran en 280 ms y su signo pasa de más a menos. Los paneles cerrados son inertes y quedan fuera del árbol de accesibilidad. La galería entra en 200 ms y conserva el diálogo nativo, Escape y la recuperación del foco. Los botones responden a presión y las flechas se desplazan únicamente con un puntero preciso.
+
+`usePortfolioMotion.ts` mantiene el contenido visible sin animación y cancela las entradas si cambia la preferencia de movimiento reducido. CSS desactiva las demás transiciones con esa misma preferencia. No se anima el desplazamiento por cuenta propia ni se bloquean interacciones mientras termina una transición.
+
+Las listas de tecnologías utilizan `data-reveal="technologies"`: cada elemento entra con 35 ms de separación y un retraso máximo de 350 ms. Los iconos se elevan y giran ligeramente al pasar el cursor; una línea toma el color de la tecnología. Los nombres siguen siendo texto, sin añadir paradas de teclado a elementos decorativos.
+
+`ConversationMascot.tsx` dibuja un personaje de teléfono en SVG con los colores de la M. Al pasar el cursor sobre «Hablemos», enfocarlo con el teclado o pulsarlo, el personaje realiza un salto y un saludo de 620 ms. Su sombra acompaña el salto. No se repite automáticamente, no modifica el enlace de WhatsApp y permanece quieto con movimiento reducido.
+
 La propuesta con navegación lateral es ahora la página principal en `/`. `/design-preview` redirige a `/`.
 
 ## Implementación
@@ -42,6 +54,8 @@ Se comprobaron una y tres imágenes (estas últimas en una ruta temporal de prue
 
 ## Tecnologías
 
-`Technologies.tsx` presenta el stack principal y cuatro grupos estáticos: frontend, backend, bases de datos y servicios, y pruebas y herramientas. Utiliza iconos discretos y nombres visibles. Las tecnologías provienen del CV y de los proyectos documentados; no se asignan porcentajes de dominio.
+`Technologies.tsx` conserva el stack principal y añade debajo «Otras tecnologías que he utilizado», con PHP, Laravel, Python y herramientas usadas en otros proyectos o durante la formación. Los iconos tienen colores de marca independientes de la paleta; los nombres mantienen el contraste del tema. Los conceptos sin marca y las identidades monocromáticas usan el color del texto. No se asignan porcentajes de dominio.
+
+Los cuatro ejemplos muestran únicamente tecnologías del proyecto citado: frontend en Presta Prenda, Express e integraciones en NutriDev, arquitectura y datos en Nodatix, y backend y pruebas en POS Multiempresa. Nodatix aparece una sola vez y no se le atribuye Python. NutriDev describe Express como servidor de la interfaz y del backend.
 
 La sección se sitúa entre Sobre mí y Trayectoria. Al recorrerla se mantiene activo Perfil en móvil o Sobre mí en escritorio. Cada ejemplo enlaza a Proyectos y despliega el proyecto citado. Los grupos se muestran en cuatro columnas en escritorio, dos en tablet y una en móvil. Se comprobaron español e inglés, temas claro y oscuro, enlaces a proyectos y accesibilidad automática.

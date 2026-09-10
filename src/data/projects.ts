@@ -23,6 +23,7 @@ export const projectsDataConfig: Project[] = [
         descExtendedKey: 'projects.nodatix.descExtended',
         images: ["/img/crm_pasteleria_image.webp"],
         coverLabelKey: 'projects.nodatix.coverLabel',
+        repoLink: 'https://github.com/miguelazaro/crm-pasteleria',
         technologies: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Supabase', 'Zod', 'Vitest', 'WhatsApp Cloud API'],
         modulesKey: [
             'projects.nodatix.modules.0',
@@ -42,6 +43,7 @@ export const projectsDataConfig: Project[] = [
         descExtendedKey: 'projects.evenrent.descExtended',
         images: ["/img/evenrent_image.webp"],
         coverLabelKey: 'projects.evenrent.coverLabel',
+        repoLink: 'https://github.com/miguelazaro/evenrent',
         technologies: ['Next.js', 'TypeScript', 'tRPC', 'Prisma', 'PostgreSQL'],
         modulesKey: [
             'projects.evenrent.modules.0',
@@ -73,6 +75,7 @@ export const projectsDataConfig: Project[] = [
         descExtendedKey: 'projects.pos.descExtended',
         images: ['/img/sistema_pos_image.webp'],
         coverLabelKey: 'projects.pos.coverLabel',
+        repoLink: 'https://github.com/KalioPacheco/point-of-sale-POS',
         technologies: ['Node.js', 'Node Native Test Runner'],
         modulesKey: [
             'projects.pos.modules.0',

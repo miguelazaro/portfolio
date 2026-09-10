@@ -11,8 +11,12 @@ Portafolio personal como Desarrollador Fullstack Mid. Reúne proyectos, experien
 - Temas claro y oscuro, con tres combinaciones de acento: menta/coral, lila/lima y azul/naranja.
 - Contenido en español e inglés.
 - Proyectos desplegables con descripción, participación, tecnologías y capturas.
+- Acceso «Ver repositorio» en los proyectos con `repoLink` definido en `src/data/projects.ts`. Abre GitHub en una pestaña nueva; está disponible para Nodatix, Evenrent, POS Multiempresa, NutriDev y la PWA de tareas offline.
+- Contacto por WhatsApp desde la sección de contacto y el acceso lateral «Hablemos». Ambos usan el número +52 238 248 5234 y preparan un mensaje de presentación en el idioma seleccionado, que el visitante puede editar y enviar. En móvil, el acceso queda encima de la navegación inferior; al llegar a Contacto se oculta y permanece el botón de la sección.
+- Transiciones breves en navegación, proyectos, galería y botones. Las entradas de títulos ocurren una sola vez y los efectos respetan la preferencia de movimiento reducido.
+- Las listas de tecnologías entran de forma escalonada y sus iconos responden al cursor. «Hablemos» incorpora un personaje en SVG que salta y saluda al pasar el cursor o recibir foco, sin animación continua.
 - Galerías con carrusel, ampliación, zoom, controles de teclado y deslizamiento horizontal en móvil.
-- Tecnologías agrupadas por área, con el stack principal destacado y ejemplos enlazados a proyectos.
+- Stack principal destacado, otras tecnologías utilizadas e iconos con colores de marca. Ejemplos de uso enlazados a Presta Prenda, NutriDev, Nodatix y POS Multiempresa.
 - Trayectoria con experiencia laboral, estudios y certificaciones del CV.
 - Formulario de contacto con validación, estados de envío y conservación del mensaje si ocurre un error.
 

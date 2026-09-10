@@ -123,7 +123,7 @@ const translations = {
         // Project 1
         'projects.project1.title': 'NutriDev — SaaS de gestión nutricional',
         'projects.project1.desc': 'Gestión de pacientes, planes alimenticios y citas para nutriólogos, con soporte offline y pagos mediante Stripe.',
-        'projects.project1.descExtended': 'Sistema SaaS para nutriólogos con gestión de pacientes, planes alimenticios con Mistral, citas y reportes PDF. Desarrollé el soporte PWA con Service Workers y una estrategia de caché network-first con fallback offline. Integré pagos con Stripe Checkout y procesamiento asíncrono mediante webhooks.',
+        'projects.project1.descExtended': 'Sistema SaaS para nutriólogos con gestión de pacientes, planes alimenticios con Mistral, citas y reportes PDF. Express sirve la interfaz y gestiona el backend, con JavaScript, Tailwind CSS y MySQL. Desarrollé el soporte PWA con Service Workers y una estrategia de caché network-first con fallback offline. Integré pagos con Stripe Checkout y procesamiento asíncrono mediante webhooks.',
         'projects.project1.role': 'Desarrollador principal. Implementé el backend con Express y MySQL y el frontend del sistema. Integré Mistral, el funcionamiento offline mediante Service Workers y el flujo de pagos con Stripe Checkout y webhooks.',
         'projects.project1.modules.0': 'Gestión completa de pacientes con historial médico',
         'projects.project1.modules.1': 'Generación de planes alimenticios con IA (Mistral)',
@@ -312,7 +312,7 @@ const translations = {
         // Project 1
         'projects.project1.title': 'NutriDev — Nutrition Management SaaS',
         'projects.project1.desc': 'Patient, meal plan and appointment management for nutritionists, with offline support and Stripe payments.',
-        'projects.project1.descExtended': 'A SaaS system for nutritionists with patient management, Mistral-powered meal plans, appointments and PDF reports. Built PWA support using Service Workers and a network-first cache strategy with an offline fallback. Integrated Stripe Checkout payments and asynchronous processing through webhooks.',
+        'projects.project1.descExtended': 'A SaaS system for nutritionists with patient management, Mistral-powered meal plans, appointments and PDF reports. Express serves the interface and handles the backend, with JavaScript, Tailwind CSS and MySQL. Built PWA support using Service Workers and a network-first cache strategy with an offline fallback. Integrated Stripe Checkout payments and asynchronous processing through webhooks.',
         'projects.project1.role': 'Lead developer. Implemented the Express and MySQL backend and the frontend. Integrated Mistral, offline functionality through Service Workers and the payment flow with Stripe Checkout and webhooks.',
         'projects.project1.modules.0': 'Complete patient management with medical history',
         'projects.project1.modules.1': 'AI-powered meal plan generation (Mistral)',

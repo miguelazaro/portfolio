@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState, type PointerEvent } from 'react';
-import { IconArrowDown, IconArrowUpRight, IconArrowRight, IconHome, IconStack2, IconBriefcase, IconUser, IconMail, IconSun, IconMoon, IconBrandGithub, IconBrandLinkedin, IconPlus, IconMinus } from '@tabler/icons-react';
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react';
+import { IconArrowDown, IconArrowUpRight, IconArrowRight, IconHome, IconStack2, IconBriefcase, IconUser, IconMail, IconSun, IconMoon, IconBrandGithub, IconBrandLinkedin, IconBrandWhatsapp, IconMinus } from '@tabler/icons-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { projectsDataConfig } from '@/data/projects';
 import { portfolioCopy } from './copy';
@@ -9,6 +9,8 @@ import { ContactForm } from './ContactForm';
 import { Journey } from './Journey';
 import { ProjectGallery } from './ProjectGallery';
 import { Technologies } from './Technologies';
+import { usePortfolioMotion } from './usePortfolioMotion';
+import { ConversationMascot } from './ConversationMascot';
 import styles from './portfolio.module.css';
 
 const glyph = 'M 30 370 V 40 H 105 L 190 193 L 275 40 H 350 V 370 H 268 V 199 L 190 327 L 112 199 V 370 Z';
@@ -18,11 +20,17 @@ export function Portfolio() {
     const { language, setLanguage, t } = useLanguage();
     const es = language === 'es';
     const copy = portfolioCopy[language];
+    const whatsappMessage = es
+        ? 'Hola, Miguel. Vi tu portafolio y me gustaría conversar contigo sobre una oportunidad o proyecto.'
+        : 'Hi Miguel, I saw your portfolio and would like to talk with you about an opportunity or project.';
+    const whatsappUrl = `https://wa.me/522382485234?text=${encodeURIComponent(whatsappMessage)}`;
     const [light, setLight] = useState(false);
     const [palette, setPalette] = useState('mint');
     const [active, setActive] = useState('home');
     const [selected, setSelected] = useState<string | null>('nodatix');
     const artwork = useRef<HTMLDivElement>(null);
+    const root = useRef<HTMLDivElement>(null);
+    usePortfolioMotion(root);
     const nav = [
         { id: 'home', label: t('nav.home'), icon: IconHome },
         { id: 'projects', label: t('nav.projects'), icon: IconStack2 },
@@ -50,16 +58,16 @@ export function Portfolio() {
     }
 
     return (
-        <div className={styles.portfolio} data-theme={light ? 'light' : 'dark'} data-palette={palette}>
+        <div ref={root} className={styles.portfolio} data-theme={light ? 'light' : 'dark'} data-palette={palette}>
             <a href="#main" className={styles.skip}>{t('nav.skip')}</a>
             <aside className={styles.rail}>
                 <a href="#home" className={styles.brand} aria-label={es ? 'Miguel Lázaro — inicio' : 'Miguel Lázaro — home'}><span aria-hidden="true">m<span>.</span></span></a>
                 <span className={styles.railCaption}>FULL STACK<br />DEVELOPER</span>
                 <nav aria-label={t('nav.label')} className={styles.navigation}>
-                    <div className={styles.desktopNavigation}>
+                    <div className={styles.desktopNavigation} style={{ '--nav-index': nav.findIndex(item => item.id === active) } as CSSProperties}>
                         {nav.map(item => <a key={item.id} href={`#${item.id}`} aria-current={active === item.id ? 'location' : undefined}><item.icon size={21} stroke={1.5} aria-hidden="true" /><span>{item.label}</span></a>)}
                     </div>
-                    <div className={styles.mobileNavigation}>
+                    <div className={styles.mobileNavigation} style={{ '--nav-index': active === 'experience' ? 2 : ['home', 'projects', 'about', 'contact'].indexOf(active) } as CSSProperties}>
                         {nav.filter(item => item.id !== 'experience').map(item => (
                             <a key={item.id} href={`#${item.id}`} aria-current={active === item.id || (item.id === 'about' && active === 'experience') ? 'location' : undefined}>
                                 <item.icon size={21} stroke={1.5} aria-hidden="true" />
@@ -84,7 +92,7 @@ export function Portfolio() {
                     </div>
                 </header>
                 <section id="home" className={styles.hero} aria-labelledby="hero-title">
-                    <div className={styles.heroCopy}>
+                    <div className={styles.heroCopy} data-reveal>
                         <p className={styles.eyebrow}><span>01</span> {es ? 'CÓDIGO CON IDENTIDAD' : 'CODE WITH IDENTITY'}</p>
                         <p className={styles.hello}>{es ? 'Hola, soy' : 'Hello, I’m'}</p>
                         <h1 id="hero-title">Miguel<br />Lázaro<span>.</span></h1>
@@ -110,15 +118,32 @@ export function Portfolio() {
                     <div className={styles.heroFooter}><span>TEHUACÁN, MÉXICO</span><span>FRONTEND <i>×</i> BACKEND <i>×</i> {es ? 'CRITERIO' : 'CRAFT'}</span><a href="#projects" aria-label={t('hero.projects')}><IconArrowDown size={18} /></a></div>
                 </section>
                 <section id="projects" className={styles.section} aria-labelledby="projects-title">
-                    <div className={styles.sectionHeader}><div><p className={styles.eyebrow}><span>02</span> {es ? 'TRABAJO SELECCIONADO' : 'SELECTED WORK'}</p><h2 id="projects-title">{es ? 'Del problema' : 'From a problem'}<br /><span>{es ? 'al producto.' : 'to a product.'}</span></h2></div><p>{es ? 'Sistemas de negocio, decisiones técnicas y mi participación en cada proyecto.' : 'Business systems, technical decisions and my role in each project.'}</p></div>
+                    <div className={styles.sectionHeader} data-reveal><div><p className={styles.eyebrow}><span>02</span> {es ? 'TRABAJO SELECCIONADO' : 'SELECTED WORK'}</p><h2 id="projects-title">{es ? 'Del problema' : 'From a problem'}<br /><span>{es ? 'al producto.' : 'to a product.'}</span></h2></div><p>{es ? 'Sistemas de negocio, decisiones técnicas y mi participación en cada proyecto.' : 'Business systems, technical decisions and my role in each project.'}</p></div>
                     <div className={styles.projectList}>
                         {projectsDataConfig.map((project, index) => {
                             const open = selected === project.id;
                             return <article key={project.id} className={styles.project} data-open={open}>
-                                <h3><button className={styles.projectTrigger} onClick={() => setSelected(open ? null : project.id)} aria-expanded={open} aria-controls={`project-${project.id}`} id={`trigger-${project.id}`}><span className={styles.projectNumber}>0{index + 1}</span><span className={styles.projectName}>{t(project.titleKey)}</span><span className={styles.projectTech}>{project.technologies.slice(0, 2).join(' / ')}</span>{open ? <IconMinus size={23} /> : <IconPlus size={23} />}</button></h3>
-                                <div id={`project-${project.id}`} role="region" aria-labelledby={`trigger-${project.id}`} hidden={!open} className={styles.projectDetail}>
-                                    <div><p className={styles.projectDescription}>{t(project.descExtendedKey)}</p>{project.roleKey && <p className={styles.role}>{t(project.roleKey)}</p>}<ul className={styles.contributions}>{(project.id === 'nodatix' ? copy.contributions : project.modulesKey.map(t)).map(item => <li key={item}><IconArrowRight size={15} aria-hidden="true" /><span>{item}</span></li>)}</ul><p className={styles.stack}>{project.technologies.join(' · ')}</p>{project.repoLink && <a className={styles.cv} href={project.repoLink} target="_blank" rel="noopener noreferrer">{es ? 'Ver código' : 'View code'}<IconArrowUpRight size={17} /></a>}</div>
+                                <h3><button className={styles.projectTrigger} onClick={() => setSelected(open ? null : project.id)} aria-expanded={open} aria-controls={`project-${project.id}`} id={`trigger-${project.id}`}><span className={styles.projectNumber}>0{index + 1}</span><span className={styles.projectName}>{t(project.titleKey)}</span><span className={styles.projectTech}>{project.technologies.slice(0, 2).join(' / ')}</span><span className={styles.projectToggle} aria-hidden="true"><IconMinus size={23} /><IconMinus size={23} /></span></button></h3>
+                                <div id={`project-${project.id}`} role="region" aria-labelledby={`trigger-${project.id}`} aria-hidden={!open} inert={!open} className={styles.projectPanel} data-open={open}>
+                                    <div className={styles.projectPanelInner}>
+                                    <div className={styles.projectDetail}>
+                                    <div>
+                                        <p className={styles.projectDescription}>{t(project.descExtendedKey)}</p>
+                                        {project.roleKey && <p className={styles.role}>{t(project.roleKey)}</p>}
+                                        <ul className={styles.contributions}>{(project.id === 'nodatix' ? copy.contributions : project.modulesKey.map(t)).map(item => <li key={item}><IconArrowRight size={15} aria-hidden="true" /><span>{item}</span></li>)}</ul>
+                                        <p className={styles.stack}>{project.technologies.join(' · ')}</p>
+                                        {project.repoLink && (
+                                            <a className={styles.repositoryLink} href={project.repoLink} target="_blank" rel="noopener noreferrer">
+                                                <IconBrandGithub size={20} aria-hidden="true" />
+                                                <span>{es ? 'Ver repositorio' : 'View repository'}</span>
+                                                <span className={styles.srOnly}>{es ? ` de ${t(project.titleKey)} en GitHub (abre en una pestaña nueva)` : ` for ${t(project.titleKey)} on GitHub (opens in a new tab)`}</span>
+                                                <IconArrowUpRight size={17} aria-hidden="true" />
+                                            </a>
+                                        )}
+                                    </div>
                                     {project.images[0] ? <ProjectGallery images={project.images} title={t(project.titleKey)} /> : <div className={styles.projectDiagram}><span className={styles.diagramLabel}>{es ? 'ESTRUCTURA DEL PROYECTO' : 'PROJECT STRUCTURE'}</span><strong>{project.id === 'nodatix' ? 'Nodatix' : 'Evenrent'}<span>↗</span></strong>{(project.id === 'nodatix' ? ['Next.js / Server Actions', 'Zod → ' + (es ? 'Servicios' : 'Services') + ' → Prisma', 'PostgreSQL / Supabase'] : ['Next.js / TypeScript', 'tRPC / Prisma', 'PostgreSQL']).map((line, i) => <div className={styles.diagramRow} key={line}><span>0{i + 1}</span>{line}</div>)}<p>{es ? 'Esquema técnico · captura pendiente' : 'Technical outline · screenshot pending'}</p></div>}
+                                    </div>
+                                    </div>
                                 </div>
                             </article>;
                         })}
@@ -133,6 +158,12 @@ export function Portfolio() {
                         <div className={styles.contactIntro}>
                             <h2 id="contact-title">{es ? '¿Construimos' : 'Let’s build'}<br /><a href="mailto:miguel.lazaro.2003@gmail.com">{es ? 'algo juntos?' : 'something.'}<IconArrowUpRight aria-hidden="true" /></a></h2>
                             <a className={styles.email} href="mailto:miguel.lazaro.2003@gmail.com">miguel.lazaro.2003@gmail.com</a>
+                            <a className={styles.contactWhatsapp} href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                                <IconBrandWhatsapp size={22} aria-hidden="true" />
+                                <span>{es ? 'Escríbeme por WhatsApp' : 'Message me on WhatsApp'}</span>
+                                <span className={styles.srOnly}>{es ? ' (abre en una pestaña nueva)' : ' (opens in a new tab)'}</span>
+                                <IconArrowUpRight size={17} aria-hidden="true" />
+                            </a>
                             <div className={styles.contactSocials}>
                                 <a className={styles.cv} href="https://github.com/miguelazaro" target="_blank" rel="noopener noreferrer">GitHub<IconArrowUpRight size={16} /></a>
                                 <a className={styles.cv} href="https://www.linkedin.com/in/miguel-lazaro-dev/" target="_blank" rel="noopener noreferrer">LinkedIn<IconArrowUpRight size={16} /></a>
@@ -143,6 +174,12 @@ export function Portfolio() {
                     </div>
                 </section>
                 <footer className={styles.footer}><span>© 2026 MIGUEL ÁNGEL LÁZARO</span><a href="#home">{es ? 'Volver arriba' : 'Back to top'}<IconArrowUpRight size={15} /></a></footer>
+                <a className={styles.whatsappCallout} href={whatsappUrl} target="_blank" rel="noopener noreferrer" hidden={active === 'contact'}>
+                    <span className={styles.whatsappMark}><ConversationMascot /></span>
+                    <span className={styles.whatsappLabel}><small><IconBrandWhatsapp size={12} aria-hidden="true" />WHATSAPP</small><span>{es ? 'Hablemos' : 'Let’s talk'}</span></span>
+                    <IconArrowUpRight size={18} aria-hidden="true" />
+                    <span className={styles.srOnly}>{es ? ' (abre en una pestaña nueva)' : ' (opens in a new tab)'}</span>
+                </a>
             </main>
         </div>
     );

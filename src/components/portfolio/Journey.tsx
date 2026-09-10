@@ -42,7 +42,7 @@ export function Journey() {
 
     return (
         <section id="experience" className={styles.section} aria-labelledby="journey-title">
-            <div className={styles.sectionHeader}>
+            <div className={styles.sectionHeader} data-reveal>
                 <div>
                     <p className={styles.eyebrow}><span>04</span> {t('experience.sectionLabel')}</p>
                     <h2 id="journey-title">{t('experience.title')} <span>{t('experience.titleHighlight')}.</span></h2>
