@@ -20,7 +20,7 @@ Portafolio personal como Desarrollador Fullstack Mid. Reúne proyectos, experien
 - Trayectoria con experiencia laboral, estudios y certificaciones del CV.
 - Formulario de contacto con validación, estados de envío y conservación del mensaje si ocurre un error.
 
-La tipografía utiliza Space Grotesk y DM Sans, servidas desde archivos locales. Los estilos se implementan con CSS Modules y la inicial M está dibujada en SVG.
+La tipografía utiliza Space Grotesk y DM Sans, servidas desde archivos locales. Los estilos se implementan con CSS Modules. La portada utiliza la fotografía `public/img/imagen_laptop.jpeg`, con encuadre responsive y ajustes de color mediante CSS que conservan el archivo original.
 
 ## Tecnologías
 

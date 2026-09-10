@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react';
+import Image from 'next/image';
 import { IconArrowDown, IconArrowUpRight, IconArrowRight, IconHome, IconStack2, IconBriefcase, IconUser, IconMail, IconSun, IconMoon, IconBrandGithub, IconBrandLinkedin, IconBrandWhatsapp, IconMinus } from '@tabler/icons-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { projectsDataConfig } from '@/data/projects';
@@ -13,8 +14,22 @@ import { usePortfolioMotion } from './usePortfolioMotion';
 import { ConversationMascot } from './ConversationMascot';
 import styles from './portfolio.module.css';
 
-const glyph = 'M 30 370 V 40 H 105 L 190 193 L 275 40 H 350 V 370 H 268 V 199 L 190 327 L 112 199 V 370 Z';
 const sections = ['home', 'projects', 'about', 'technologies', 'experience', 'contact'];
+
+function tiltWorkspace(event: PointerEvent<HTMLDivElement>) {
+    if (event.pointerType !== 'mouse' || !window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) return;
+    // Measure the stationary wrapper so the moving frame cannot shift the target.
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = Math.max(-.5, Math.min(.5, (event.clientX - bounds.left) / bounds.width - .5));
+    const y = Math.max(-.5, Math.min(.5, (event.clientY - bounds.top) / bounds.height - .5));
+    event.currentTarget.style.setProperty('--photo-tilt-x', `${-y * 6}deg`);
+    event.currentTarget.style.setProperty('--photo-tilt-y', `${x * 6}deg`);
+}
+
+function resetWorkspace(event: PointerEvent<HTMLDivElement>) {
+    event.currentTarget.style.removeProperty('--photo-tilt-x');
+    event.currentTarget.style.removeProperty('--photo-tilt-y');
+}
 
 export function Portfolio() {
     const { language, setLanguage, t } = useLanguage();
@@ -28,7 +43,6 @@ export function Portfolio() {
     const [palette, setPalette] = useState('mint');
     const [active, setActive] = useState('home');
     const [selected, setSelected] = useState<string | null>('nodatix');
-    const artwork = useRef<HTMLDivElement>(null);
     const root = useRef<HTMLDivElement>(null);
     usePortfolioMotion(root);
     const nav = [
@@ -49,13 +63,6 @@ export function Portfolio() {
         window.addEventListener('resize', update);
         return () => { window.removeEventListener('scroll', update); window.removeEventListener('resize', update); };
     }, []);
-
-    function moveLetter(event: PointerEvent<HTMLDivElement>) {
-        if (event.pointerType !== 'mouse' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        const bounds = event.currentTarget.getBoundingClientRect();
-        artwork.current?.style.setProperty('--tilt-x', `${((event.clientY - bounds.top) / bounds.height - .5) * -12}deg`);
-        artwork.current?.style.setProperty('--tilt-y', `${((event.clientX - bounds.left) / bounds.width - .5) * 16}deg`);
-    }
 
     return (
         <div ref={root} className={styles.portfolio} data-theme={light ? 'light' : 'dark'} data-palette={palette}>
@@ -100,16 +107,22 @@ export function Portfolio() {
                         <p className={styles.intro}>{es ? 'De la primera interacción a la lógica detrás del negocio. Desarrollo aplicaciones con React, Next.js, TypeScript y Node.js.' : 'From the first interaction to the business logic behind it. I build applications with React, Next.js, TypeScript and Node.js.'}</p>
                         <div className={styles.actions}><a href="#projects" className={styles.primary}>{t('hero.projects')}<IconArrowDown size={18} /></a><a href="/cv/curriculum_vitae_lazaro.pdf#toolbar=0" target="_blank" rel="noopener noreferrer" className={styles.cv}>{t('hero.cv')}<IconArrowUpRight size={18} /></a></div>
                     </div>
-                    <div className={styles.artwork} ref={artwork} onPointerMove={moveLetter} onPointerLeave={() => { artwork.current?.style.setProperty('--tilt-x', '0deg'); artwork.current?.style.setProperty('--tilt-y', '0deg'); }}>
-                        <div className={styles.artGrid} aria-hidden="true" />
-                        <span className={styles.artLabel}>{es ? 'ENTRE DISEÑO Y LÓGICA' : 'BETWEEN DESIGN & LOGIC'}</span>
-                        <svg className={styles.monogram} viewBox="0 0 430 450" aria-hidden="true">
-                            <path className={styles.letterShadow} d={glyph} transform="translate(35 26)" />
-                            <path className={styles.letterMiddle} d={glyph} transform="translate(18 13)" />
-                            <path className={styles.letterFront} d={glyph} />
-                            <path d="M 30 40 H 105 L 190 193 L 275 40 H 350" fill="none" stroke="white" strokeOpacity=".45" strokeWidth="1.5" />
-                        </svg>
-                        <span className={styles.artCoordinate} aria-hidden="true">M—L<br />TEHUACÁN / MX</span>
+                    <div className={styles.heroMedia}>
+                        <figure className={styles.workspaceFigure} data-reveal>
+                            <div className={styles.workspaceInteraction} onPointerMove={tiltWorkspace} onPointerLeave={resetWorkspace} onPointerCancel={resetWorkspace}>
+                            <div className={styles.workspaceFrame}>
+                                <Image
+                                    src="/img/imagen_laptop.jpeg"
+                                    alt={es ? 'Laptops y monitores con código y documentación en un espacio de trabajo de desarrollo.' : 'Laptops and monitors showing code and documentation in a development workspace.'}
+                                    fill
+                                    preload
+                                    sizes="(max-width: 540px) calc(100vw - 44px), (max-width: 800px) calc(100vw - 160px), (min-width: 1700px) 720px, 46vw"
+                                    className={styles.workspacePhoto}
+                                />
+                            </div>
+                            </div>
+                            <figcaption>{es ? 'Entre interfaces y lógica de negocio.' : 'Between interfaces and business logic.'}</figcaption>
+                        </figure>
                         <div className={styles.palette} role="group" aria-label={es ? 'Combinación de colores' : 'Color combination'}>
                             <span>{es ? 'ACENTO' : 'ACCENT'}</span>
                             {[['mint', es ? 'Menta y coral' : 'Mint and coral'], ['lilac', es ? 'Lila y lima' : 'Lilac and lime'], ['blue', es ? 'Azul y naranja' : 'Blue and orange']].map(([value, label]) => <button key={value} data-swatch={value} aria-label={label} title={label} aria-pressed={palette === value} onClick={() => setPalette(value)}><span /><span /></button>)}
