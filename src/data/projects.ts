@@ -55,6 +55,28 @@ export const projectsDataConfig: Project[] = [
         roleKey: 'projects.banquetera.role',
     },
     {
+        id: 'autopartes',
+        titleKey: 'projects.autopartes.title',
+        descKey: 'projects.autopartes.desc',
+        descExtendedKey: 'projects.autopartes.descExtended',
+        images: [
+            '/img/autopartes_lazaro1.webp',
+            '/img/autopartes_lazaro2.webp',
+            '/img/autopartes_lazaro3.webp',
+            '/img/autopartes_lazaro4.webp',
+            '/img/autopartes_lazaro5.webp',
+        ],
+        coverLabelKey: 'projects.autopartes.coverLabel',
+        technologies: ['Node.js', 'Express', 'JavaScript', 'EJS', 'MySQL', 'Sequelize', 'Bootstrap'],
+        modulesKey: [
+            'projects.autopartes.modules.0',
+            'projects.autopartes.modules.1',
+            'projects.autopartes.modules.2',
+            'projects.autopartes.modules.3',
+        ],
+        roleKey: 'projects.autopartes.role',
+    },
+    {
         id: 'evenrent',
         titleKey: 'projects.evenrent.title',
         descKey: 'projects.evenrent.desc',

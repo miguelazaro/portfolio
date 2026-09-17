@@ -100,6 +100,16 @@ const translations = {
         'projects.banquetera.modules.2': 'Catálogo, promociones, información de entrega y mapa de ubicación.',
         'projects.banquetera.modules.3': 'Contacto por WhatsApp con mensaje preparado y metadatos para compartir el sitio.',
 
+        'projects.autopartes.title': 'Página de autopartes',
+        'projects.autopartes.coverLabel': 'Catálogo web y panel administrativo',
+        'projects.autopartes.desc': 'Aplicación web de autopartes con catálogo público, inicio de sesión y panel administrativo para gestionar productos.',
+        'projects.autopartes.descExtended': 'Página de autopartes con catálogo público y vistas de detalle de productos, conectada a una base de datos MySQL. El panel administrativo permite crear, consultar, editar y eliminar productos. Desarrollada con Node.js y Express, páginas renderizadas con EJS y acceso a datos mediante Sequelize.',
+        'projects.autopartes.role': 'Desarrollo de las vistas públicas y del panel administrativo, las rutas de Express y la conexión con MySQL. Implementé el registro, el inicio de sesión y la gestión de productos.',
+        'projects.autopartes.modules.0': 'Catálogo público con imágenes, descripciones y detalles de productos.',
+        'projects.autopartes.modules.1': 'Panel administrativo con creación, consulta, edición y eliminación de productos.',
+        'projects.autopartes.modules.2': 'Registro e inicio de sesión con bcryptjs, express-session y control de acceso por rol.',
+        'projects.autopartes.modules.3': 'Edición de contenido con CKEditor, validación de formularios y sanitización de HTML.',
+
         'projects.evenrent.title': 'Evenrent — Gestión de eventos y rentas',
         'projects.evenrent.coverLabel': 'Eventos, recursos y operaciones',
         'projects.evenrent.desc': 'Sistema web para administrar eventos, recursos y rentas de negocios dedicados a servicios para eventos.',
@@ -298,6 +308,16 @@ const translations = {
         'projects.banquetera.modules.1': 'Embla Carousel slideshow and entrance animations with Framer Motion.',
         'projects.banquetera.modules.2': 'Catalog, promotions, delivery information and an embedded location map.',
         'projects.banquetera.modules.3': 'WhatsApp contact with a prepared message and metadata for sharing the site.',
+
+        'projects.autopartes.title': 'Auto Parts Website',
+        'projects.autopartes.coverLabel': 'Web catalog and administration panel',
+        'projects.autopartes.desc': 'Auto parts web application with a public catalog, login and an administration panel for managing products.',
+        'projects.autopartes.descExtended': 'An auto parts website with a public catalog and product detail pages, connected to a MySQL database. The administration panel supports creating, viewing, editing and deleting products. Built with Node.js and Express, EJS server-rendered pages and Sequelize for data access.',
+        'projects.autopartes.role': 'Developed the public pages, administration panel, Express routes and MySQL connection. Implemented registration, login and product management.',
+        'projects.autopartes.modules.0': 'Public catalog with product images, descriptions and details.',
+        'projects.autopartes.modules.1': 'Administration panel for creating, viewing, editing and deleting products.',
+        'projects.autopartes.modules.2': 'Registration and login with bcryptjs, express-session and role-based access control.',
+        'projects.autopartes.modules.3': 'Content editing with CKEditor, form validation and HTML sanitization.',
 
         'projects.evenrent.title': 'Evenrent — Event and Rental Management',
         'projects.evenrent.coverLabel': 'Events, resources and operations',
