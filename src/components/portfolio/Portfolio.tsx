@@ -105,7 +105,13 @@ export function Portfolio() {
                         <h1 id="hero-title">Miguel<br />Lázaro<span>.</span></h1>
                         <h2>{t('hero.title')}</h2>
                         <p className={styles.intro}>{es ? 'De la primera interacción a la lógica detrás del negocio. Desarrollo aplicaciones con React, Next.js, TypeScript y Node.js.' : 'From the first interaction to the business logic behind it. I build applications with React, Next.js, TypeScript and Node.js.'}</p>
-                        <div className={styles.actions}><a href="#projects" className={styles.primary}>{t('hero.projects')}<IconArrowDown size={18} /></a><a href="/cv/curriculum_vitae_lazaro.pdf#toolbar=0" target="_blank" rel="noopener noreferrer" className={styles.cv}>{t('hero.cv')}<IconArrowUpRight size={18} /></a></div>
+                        <div className={styles.actions}>
+                            <a href="#projects" className={styles.primary}>{t('hero.projects')}<IconArrowDown size={18} /></a>
+                            <div className={styles.cvOptions} role="group" aria-label={es ? 'Currículum por idioma' : 'Resume by language'}>
+                                <a href="/cv/curriculum_vitae_lazaro.pdf#toolbar=0" target="_blank" rel="noopener noreferrer" className={styles.cv} lang="es" hrefLang="es">CV en español<IconArrowUpRight size={18} aria-hidden="true" /><span className={styles.srOnly}> (PDF, abre en una pestaña nueva)</span></a>
+                                <a href="/cv/curriculum_vitae_lazaro_english.pdf#toolbar=0" target="_blank" rel="noopener noreferrer" className={styles.cv} lang="en" hrefLang="en">CV in English<IconArrowUpRight size={18} aria-hidden="true" /><span className={styles.srOnly}> (PDF, opens in a new tab)</span></a>
+                            </div>
+                        </div>
                     </div>
                     <div className={styles.heroMedia}>
                         <figure className={styles.workspaceFigure} data-reveal>

@@ -91,7 +91,7 @@ Los proyectos se configuran en `src/data/projects.ts`. Sus títulos y descripcio
 
 Para agregar capturas, guardar los archivos en `public/img` e incluir sus rutas en el arreglo `images` del proyecto. La primera imagen será la portada. Cuando hay más de una, aparecen automáticamente las flechas y el contador; el carrusel no avanza por sí solo.
 
-La trayectoria se configura en `Journey.tsx`, con los textos de cargos y estudios en `LanguageContext.tsx`. El enlace al CV utiliza `public/cv/curriculum_vitae_lazaro.pdf`.
+La trayectoria se configura en `Journey.tsx`, con los textos de cargos y estudios en `LanguageContext.tsx`. La portada permite abrir el CV en español (`public/cv/curriculum_vitae_lazaro.pdf`) o en inglés (`public/cv/curriculum_vitae_lazaro_english.pdf`). Ambas opciones están disponibles independientemente del idioma de la interfaz y abren el PDF en una pestaña nueva.
 
 La portada de redes está en `public/social-card.png`; su composición editable está en `docs/social-card.html`. Los metadatos se definen en `src/app/layout.tsx`.
 

@@ -14,7 +14,8 @@ export function Hero() {
                 <p className={styles.intro}>{t('hero.description')}</p>
                 <div className={styles.actions}>
                     <a className={styles.button + ' ' + styles.primary} href="#projects">{t('hero.projects')} <IconArrowDown size={16} /></a>
-                    <a className={styles.textLink} href="/cv/curriculum_vitae_lazaro.pdf#toolbar=0" target="_blank" rel="noopener noreferrer">{t('hero.cv')} <IconArrowUpRight size={15} /></a>
+                    <a className={styles.textLink} href="/cv/curriculum_vitae_lazaro.pdf#toolbar=0" target="_blank" rel="noopener noreferrer" lang="es" hrefLang="es">CV en español <IconArrowUpRight size={15} aria-hidden="true" /></a>
+                    <a className={styles.textLink} href="/cv/curriculum_vitae_lazaro_english.pdf#toolbar=0" target="_blank" rel="noopener noreferrer" lang="en" hrefLang="en">CV in English <IconArrowUpRight size={15} aria-hidden="true" /></a>
                 </div>
             </div>
             <aside className={styles.heroAside}>
