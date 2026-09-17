@@ -90,6 +90,16 @@ const translations = {
         'projects.category.academic': 'Académico',
 
         // Evenrent
+        'projects.banquetera.title': 'La Banquetera Landing',
+        'projects.banquetera.coverLabel': 'Cervezas, refrescos y servicio a domicilio',
+        'projects.banquetera.desc': 'Landing page para un expendio de cervezas y refrescos en Tehuacán, con catálogo, promociones y contacto por WhatsApp.',
+        'projects.banquetera.descExtended': 'Sitio de presentación para La Banquetera, un expendio de cervezas y refrescos con servicio a domicilio en Tehuacán, Puebla. Reúne catálogo, promociones, condiciones de entrega y ubicación, con accesos a WhatsApp para iniciar un pedido con un mensaje preparado.',
+        'projects.banquetera.role': 'Desarrollo frontend con React y TypeScript, componentes reutilizables y estilos con CSS Modules. Implementé el diseño responsive, el carrusel y las animaciones, y publiqué el sitio en Vercel conectado a GitHub.',
+        'projects.banquetera.modules.0': 'Diseño responsive con navegación adaptada a escritorio y móvil.',
+        'projects.banquetera.modules.1': 'Carrusel con Embla Carousel y animaciones de entrada con Framer Motion.',
+        'projects.banquetera.modules.2': 'Catálogo, promociones, información de entrega y mapa de ubicación.',
+        'projects.banquetera.modules.3': 'Contacto por WhatsApp con mensaje preparado y metadatos para compartir el sitio.',
+
         'projects.evenrent.title': 'Evenrent — Gestión de eventos y rentas',
         'projects.evenrent.coverLabel': 'Eventos, recursos y operaciones',
         'projects.evenrent.desc': 'Sistema web para administrar eventos, recursos y rentas de negocios dedicados a servicios para eventos.',
@@ -279,6 +289,16 @@ const translations = {
         'projects.category.academic': 'Academic',
 
         // Evenrent
+        'projects.banquetera.title': 'La Banquetera Landing',
+        'projects.banquetera.coverLabel': 'Beer, soft drinks and local delivery',
+        'projects.banquetera.desc': 'Landing page for a beer and soft drink store in Tehuacán, featuring a catalog, promotions and WhatsApp contact.',
+        'projects.banquetera.descExtended': 'A website for La Banquetera, a beer and soft drink store offering local delivery in Tehuacán, Puebla. It brings together the catalog, promotions, delivery terms and location, with WhatsApp links to start an order using a prepared message.',
+        'projects.banquetera.role': 'Frontend development with React and TypeScript, reusable components and CSS Modules. Implemented the responsive layout, carousel and animations, and deployed the site to Vercel connected to GitHub.',
+        'projects.banquetera.modules.0': 'Responsive layout with navigation adapted to desktop and mobile.',
+        'projects.banquetera.modules.1': 'Embla Carousel slideshow and entrance animations with Framer Motion.',
+        'projects.banquetera.modules.2': 'Catalog, promotions, delivery information and an embedded location map.',
+        'projects.banquetera.modules.3': 'WhatsApp contact with a prepared message and metadata for sharing the site.',
+
         'projects.evenrent.title': 'Evenrent — Event and Rental Management',
         'projects.evenrent.coverLabel': 'Events, resources and operations',
         'projects.evenrent.desc': 'Web application for managing events, resources and rentals for event service businesses.',

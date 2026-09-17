@@ -107,6 +107,7 @@
 .contributions svg { flex-shrink: 0; margin-top: 3px; color: var(--accent); }
 .stack { font-size: 10px; line-height: 1.9; color: var(--muted); }
 .repositoryLink { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 46px; max-width: 100%; margin-top: 24px; padding: 12px 16px; border: 1px solid var(--muted); border-radius: 3px; font-size: 13px; line-height: 1.5; }
+.projectLinks { display: flex; flex-wrap: wrap; gap: 0 12px; }
 .repositoryLink svg { flex-shrink: 0; }
 .portfolio .repositoryLink:hover { color: var(--accent); border-color: var(--accent); background: var(--panel); }
 .projectDiagram { background: var(--panel); border: 1px solid var(--border); padding: 28px; }

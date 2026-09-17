@@ -11,6 +11,7 @@ Portafolio personal como Desarrollador Fullstack Mid. Reúne proyectos, experien
 - Temas claro y oscuro, con tres combinaciones de acento: menta/coral, lila/lima y azul/naranja.
 - Contenido en español e inglés.
 - Proyectos desplegables con descripción, participación, tecnologías y capturas.
+- La Banquetera Landing aparece después del CRM de Nodatix, con captura y acceso a su web publicada. Los enlaces a sitios en producción se configuran con `liveLink` en `src/data/projects.ts`.
 - Acceso «Ver repositorio» en los proyectos con `repoLink` definido en `src/data/projects.ts`. Abre GitHub en una pestaña nueva; está disponible para Nodatix, Evenrent, POS Multiempresa, NutriDev y la PWA de tareas offline.
 - Contacto por WhatsApp desde la sección de contacto y el acceso lateral «Hablemos». Ambos usan el número +52 238 248 5234 y preparan un mensaje de presentación en el idioma seleccionado, que el visitante puede editar y enviar. En móvil, el acceso queda encima de la navegación inferior; al llegar a Contacto se oculta y permanece el botón de la sección.
 - Transiciones breves en navegación, proyectos, galería y botones. Las entradas de títulos ocurren una sola vez y los efectos respetan la preferencia de movimiento reducido.

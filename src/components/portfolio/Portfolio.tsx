@@ -151,6 +151,14 @@ export function Portfolio() {
                                         {project.roleKey && <p className={styles.role}>{t(project.roleKey)}</p>}
                                         <ul className={styles.contributions}>{(project.id === 'nodatix' ? copy.contributions : project.modulesKey.map(t)).map(item => <li key={item}><IconArrowRight size={15} aria-hidden="true" /><span>{item}</span></li>)}</ul>
                                         <p className={styles.stack}>{project.technologies.join(' · ')}</p>
+                                        <div className={styles.projectLinks}>
+                                        {project.liveLink && (
+                                            <a className={styles.repositoryLink} href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                                                <span>{es ? 'Ver sitio web' : 'Visit website'}</span>
+                                                <span className={styles.srOnly}>{es ? ` de ${t(project.titleKey)} (abre en una pestaña nueva)` : ` for ${t(project.titleKey)} (opens in a new tab)`}</span>
+                                                <IconArrowUpRight size={17} aria-hidden="true" />
+                                            </a>
+                                        )}
                                         {project.repoLink && (
                                             <a className={styles.repositoryLink} href={project.repoLink} target="_blank" rel="noopener noreferrer">
                                                 <IconBrandGithub size={20} aria-hidden="true" />
@@ -159,6 +167,7 @@ export function Portfolio() {
                                                 <IconArrowUpRight size={17} aria-hidden="true" />
                                             </a>
                                         )}
+                                        </div>
                                     </div>
                                     {project.images[0] ? <ProjectGallery images={project.images} title={t(project.titleKey)} /> : <div className={styles.projectDiagram}><span className={styles.diagramLabel}>{es ? 'ESTRUCTURA DEL PROYECTO' : 'PROJECT STRUCTURE'}</span><strong>{project.id === 'nodatix' ? 'Nodatix' : 'Evenrent'}<span>↗</span></strong>{(project.id === 'nodatix' ? ['Next.js / Server Actions', 'Zod → ' + (es ? 'Servicios' : 'Services') + ' → Prisma', 'PostgreSQL / Supabase'] : ['Next.js / TypeScript', 'tRPC / Prisma', 'PostgreSQL']).map((line, i) => <div className={styles.diagramRow} key={line}><span>0{i + 1}</span>{line}</div>)}<p>{es ? 'Esquema técnico · captura pendiente' : 'Technical outline · screenshot pending'}</p></div>}
                                     </div>

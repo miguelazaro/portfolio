@@ -8,6 +8,7 @@ export interface Project {
     technologies: string[];
     modulesKey: string[];
     repoLink?: string;
+    liveLink?: string;
     coverLabelKey?: string;
     date?: string;
     statusKey?: string;
@@ -35,6 +36,23 @@ export const projectsDataConfig: Project[] = [
         date: '04/2026 – 08/2026',
         statusKey: 'projects.category.professional',
         roleKey: 'projects.nodatix.role',
+    },
+    {
+        id: 'la-banquetera',
+        titleKey: 'projects.banquetera.title',
+        descKey: 'projects.banquetera.desc',
+        descExtendedKey: 'projects.banquetera.descExtended',
+        images: ['/img/labanquetera_.webp'],
+        coverLabelKey: 'projects.banquetera.coverLabel',
+        liveLink: 'https://la-banquetera-landing.vercel.app',
+        technologies: ['React', 'TypeScript', 'Vite', 'CSS Modules', 'Framer Motion', 'Embla Carousel'],
+        modulesKey: [
+            'projects.banquetera.modules.0',
+            'projects.banquetera.modules.1',
+            'projects.banquetera.modules.2',
+            'projects.banquetera.modules.3',
+        ],
+        roleKey: 'projects.banquetera.role',
     },
     {
         id: 'evenrent',
