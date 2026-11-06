@@ -18,6 +18,31 @@ export interface Project {
 // Keep missing captures and links empty until the project's real assets are available.
 export const projectsDataConfig: Project[] = [
     {
+        id: 'dance-central',
+        titleKey: 'projects.danceCentral.title',
+        descKey: 'projects.danceCentral.desc',
+        descExtendedKey: 'projects.danceCentral.descExtended',
+        images: [
+            '/img/dance_central1.webp',
+            '/img/dance_central2.webp',
+            '/img/dance_central3.webp',
+            '/img/dance_central4.webp',
+            '/img/dance_central5.webp',
+            '/img/dance_central6.webp',
+            '/img/dance_central7.webp',
+        ],
+        coverLabelKey: 'projects.danceCentral.coverLabel',
+        liveLink: 'https://dancecentralstudio.com',
+        technologies: ['JavaScript', 'HTML', 'CSS', 'hls.js', 'Cloudflare Pages'],
+        modulesKey: [
+            'projects.danceCentral.modules.0',
+            'projects.danceCentral.modules.1',
+            'projects.danceCentral.modules.2',
+            'projects.danceCentral.modules.3',
+        ],
+        roleKey: 'projects.danceCentral.role',
+    },
+    {
         id: 'nodatix',
         titleKey: 'projects.nodatix.title',
         descKey: 'projects.nodatix.desc',

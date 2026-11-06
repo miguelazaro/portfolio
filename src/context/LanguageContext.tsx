@@ -89,6 +89,16 @@ const translations = {
         'projects.category.professional': 'Profesional',
         'projects.category.academic': 'Académico',
 
+        'projects.danceCentral.title': 'Dance Central Studio',
+        'projects.danceCentral.coverLabel': 'Estudio de danza, clases y shows para eventos',
+        'projects.danceCentral.desc': 'Sitio web para un estudio de danza en Tehuacán, con shows para eventos, clases por disciplina, horarios, galería de videos y contacto por WhatsApp.',
+        'projects.danceCentral.descExtended': 'Sitio web para Dance Central, un estudio de danza en el centro de Tehuacán, Puebla. Presenta los shows para XV años, bodas y recepciones temáticas, las disciplinas con fotos y videos, el horario semanal de catorce disciplinas en dos aulas con precios, la galería de showcases y la ubicación. Está construido en HTML, CSS y JavaScript, sin dependencias de compilación, y se publica en Cloudflare Pages.',
+        'projects.danceCentral.role': 'Diseño y desarrollo completo del sitio: estilo visual con texturas y colores por sección, logotipo en vector a partir del material de marca, maquetación responsive, interacciones en JavaScript, optimización de imágenes y video, SEO local y publicación en Cloudflare Pages con dominio propio.',
+        'projects.danceCentral.modules.0': 'Paneles por disciplina y por tipo de show con carruseles de fotos y videos.',
+        'projects.danceCentral.modules.1': 'Horario semanal filtrable por disciplina, con fichas de precios y carteles descargables.',
+        'projects.danceCentral.modules.2': 'Video de portada adaptado a pantallas horizontales y verticales, y videos largos en HLS con dos calidades.',
+        'projects.danceCentral.modules.3': 'Formulario que prepara la consulta por WhatsApp, Open Graph y datos estructurados de negocio local.',
+
         // Evenrent
         'projects.banquetera.title': 'La Banquetera Landing',
         'projects.banquetera.coverLabel': 'Cervezas, refrescos y servicio a domicilio',
@@ -297,6 +307,16 @@ const translations = {
         'projects.modal.status': 'Status',
         'projects.category.professional': 'Professional',
         'projects.category.academic': 'Academic',
+
+        'projects.danceCentral.title': 'Dance Central Studio',
+        'projects.danceCentral.coverLabel': 'Dance studio, classes and event shows',
+        'projects.danceCentral.desc': 'Website for a dance studio in Tehuacán, featuring event shows, classes by style, schedules, a video gallery and WhatsApp contact.',
+        'projects.danceCentral.descExtended': 'A website for Dance Central, a dance studio in downtown Tehuacán, Puebla. It presents shows for quinceañeras, weddings and themed receptions, its dance styles with photos and videos, a weekly schedule of fourteen styles across two studios with pricing, the showcase gallery and the location. Built with HTML, CSS and JavaScript with no build step, and deployed on Cloudflare Pages.',
+        'projects.danceCentral.role': 'End-to-end design and development: a visual style with textures and per-section colors, a vector logo extracted from the brand files, responsive layout, JavaScript interactions, image and video optimization, local SEO and deployment to Cloudflare Pages with a custom domain.',
+        'projects.danceCentral.modules.0': 'Panels for each dance style and show type, with photo and video carousels.',
+        'projects.danceCentral.modules.1': 'Weekly schedule filterable by style, with pricing cards and downloadable posters.',
+        'projects.danceCentral.modules.2': 'Hero video adapted to landscape and portrait screens, and long videos streamed in HLS at two quality levels.',
+        'projects.danceCentral.modules.3': 'Form that prepares a WhatsApp inquiry, plus Open Graph and local business structured data.',
 
         // Evenrent
         'projects.banquetera.title': 'La Banquetera Landing',

@@ -42,7 +42,7 @@ export function Portfolio() {
     const [light, setLight] = useState(false);
     const [palette, setPalette] = useState('mint');
     const [active, setActive] = useState('home');
-    const [selected, setSelected] = useState<string | null>('nodatix');
+    const [selected, setSelected] = useState<string | null>('dance-central');
     const root = useRef<HTMLDivElement>(null);
     usePortfolioMotion(root);
     const nav = [
